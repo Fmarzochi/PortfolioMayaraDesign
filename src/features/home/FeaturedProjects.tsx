@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Project } from '@/core/domain/Project';
-import { ProjectCard } from '@/features/projects/ProjectCard';
+import { FeaturedProjectCard } from '@/features/projects/FeaturedProjectCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface FeaturedProjectsProps {
@@ -57,28 +57,28 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
 
         {/* Mobile: 1 card */}
         <div className="md:hidden">
-          <ProjectCard project={get(0)} />
+          <FeaturedProjectCard project={get(0)} />
         </div>
 
         {/* Tablet md–lg: 2 cards */}
         <div className="hidden md:grid md:grid-cols-2 md:gap-5 lg:hidden">
-          <ProjectCard project={get(0)} />
-          <ProjectCard project={get(1)} />
+          <FeaturedProjectCard project={get(0)} />
+          <FeaturedProjectCard project={get(1)} />
         </div>
 
         {/* Desktop lg+: 3 cards com peek lateral */}
         <div className="hidden lg:flex lg:items-stretch lg:gap-4">
           <div className="w-[200px] shrink-0 opacity-40 xl:w-[240px]" aria-hidden="true">
-            <ProjectCard project={get(-1)} />
+            <FeaturedProjectCard project={get(-1)} />
           </div>
           <div className="flex-1 min-w-0">
-            <ProjectCard project={get(0)} />
+            <FeaturedProjectCard project={get(0)} />
           </div>
           <div className="flex-1 min-w-0">
-            <ProjectCard project={get(1)} />
+            <FeaturedProjectCard project={get(1)} />
           </div>
           <div className="w-[200px] shrink-0 opacity-40 xl:w-[240px]" aria-hidden="true">
-            <ProjectCard project={get(2)} />
+            <FeaturedProjectCard project={get(2)} />
           </div>
         </div>
 

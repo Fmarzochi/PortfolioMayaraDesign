@@ -60,9 +60,7 @@ export function HeroSection() {
             className="fluid-hero font-display font-semibold tracking-tight"
             style={{ color: 'var(--text-primary)' }}
           >
-            {t.hero.title1}
-            <span style={{ color: 'var(--accent)' }}>{t.hero.titleAccent}</span>
-            {t.hero.title2}
+            {t.hero.title1}{t.hero.titleAccent}{t.hero.title2}
           </h1>
 
           <p

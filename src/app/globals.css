@@ -152,5 +152,26 @@ video {
   line-height: 1.2;
 }
 
+/* ── CTA smoke animations ─────────────────────────── */
+@keyframes smoke-drift-left {
+  0%   { transform: translateX(0) scaleX(1);   opacity: 1; }
+  50%  { transform: translateX(-3%) scaleX(1.04); opacity: 0.8; }
+  100% { transform: translateX(0) scaleX(1);   opacity: 1; }
+}
+@keyframes smoke-drift-right {
+  0%   { transform: translateX(0) scaleX(1);   opacity: 1; }
+  50%  { transform: translateX(3%) scaleX(1.04); opacity: 0.75; }
+  100% { transform: translateX(0) scaleX(1);   opacity: 1; }
+}
+@keyframes smoke-pulse {
+  0%   { opacity: 1;    transform: scaleY(1); }
+  50%  { opacity: 0.7;  transform: scaleY(1.06); }
+  100% { opacity: 1;    transform: scaleY(1); }
+}
+
+.cta-smoke-1 { animation: smoke-pulse       14s ease-in-out infinite; }
+.cta-smoke-2 { animation: smoke-drift-left  18s ease-in-out infinite; }
+.cta-smoke-3 { animation: smoke-drift-right 22s ease-in-out infinite; }
+
 /* ── Utilitário ───────────────────────────────────── */
 .no-overflow { overflow-x: hidden; }

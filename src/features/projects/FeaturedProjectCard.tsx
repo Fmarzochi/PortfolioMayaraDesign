@@ -1,0 +1,44 @@
+'use client';
+
+import Image from 'next/image';
+import { Project } from '@/core/domain/Project';
+
+interface FeaturedProjectCardProps {
+  project: Project;
+}
+
+export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
+  return (
+    <article className="group flex flex-col overflow-hidden rounded-2xl">
+      <div
+        className="relative w-full overflow-hidden rounded-2xl"
+        style={{ aspectRatio: '4/5', background: 'var(--card-bg)' }}
+      >
+        {project.imagemUrl ? (
+          <Image
+            src={project.imagemUrl}
+            alt={project.titulo}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            <span className="font-sans text-xs" style={{ color: 'var(--accent)' }}>
+              {project.titulo}
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className="px-1 pt-4 pb-2">
+        <h3
+          className="font-display text-lg font-medium"
+          style={{ color: 'var(--text-primary)' }}
+        >
+          {project.titulo}
+        </h3>
+      </div>
+    </article>
+  );
+}

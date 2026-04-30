@@ -24,17 +24,53 @@ export function CTASection() {
           sizes="100vw"
           priority
         />
-        {/* Overlay sutil */}
+        {/* Overlay base */}
         <div
           className="absolute inset-0"
-          style={{ background: 'rgba(0,0,0,0.30)' }}
+          style={{ background: 'rgba(0,0,0,0.25)' }}
           aria-hidden="true"
         />
         {/* Vinheta radial nas bordas */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse 80% 80% at center, transparent 30%, rgba(0,0,0,0.60) 100%)',
+            background: 'radial-gradient(ellipse 80% 80% at center, transparent 20%, rgba(0,0,0,0.75) 100%)',
+          }}
+          aria-hidden="true"
+        />
+        {/* Fumaça 1 — base larga, inferior */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[55%] cta-smoke-1"
+          style={{
+            background: 'radial-gradient(ellipse 90% 70% at 50% 110%, rgba(30,30,40,0.85) 0%, transparent 70%)',
+            filter: 'blur(32px)',
+          }}
+          aria-hidden="true"
+        />
+        {/* Fumaça 2 — deriva lenta para esquerda */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[40%] cta-smoke-2"
+          style={{
+            background: 'radial-gradient(ellipse 60% 80% at 35% 100%, rgba(20,20,35,0.70) 0%, transparent 65%)',
+            filter: 'blur(48px)',
+          }}
+          aria-hidden="true"
+        />
+        {/* Fumaça 3 — deriva para direita */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[45%] cta-smoke-3"
+          style={{
+            background: 'radial-gradient(ellipse 55% 75% at 70% 100%, rgba(15,15,30,0.65) 0%, transparent 60%)',
+            filter: 'blur(56px)',
+          }}
+          aria-hidden="true"
+        />
+        {/* Fumaça superior — envolve o rosto */}
+        <div
+          className="absolute inset-x-0 top-0 h-[35%]"
+          style={{
+            background: 'radial-gradient(ellipse 100% 60% at 50% 0%, rgba(0,0,0,0.60) 0%, transparent 70%)',
+            filter: 'blur(20px)',
           }}
           aria-hidden="true"
         />

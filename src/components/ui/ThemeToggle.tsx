@@ -10,7 +10,7 @@ export function ThemeToggle() {
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return <div className="h-9 w-9 rounded-md" aria-hidden="true" />;
+    return <div className="h-9 w-9 rounded-full" aria-hidden="true" />;
   }
 
   const isDark = theme === 'dark';
@@ -20,7 +20,7 @@ export function ThemeToggle() {
       type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={isDark ? 'Ativar modo claro' : 'Ativar modo escuro'}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border transition-all duration-200"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-200"
       style={{
         borderColor: 'var(--border)',
         color: 'var(--text-muted)',

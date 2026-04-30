@@ -44,7 +44,12 @@ export function FAQSection() {
                 <div
                   key={idx}
                   className="overflow-hidden rounded-xl transition-opacity duration-200"
-                  style={{ border: '1px solid var(--border)', background: 'var(--card-bg)', opacity: isMuted ? 0.45 : 1 }}
+                  style={{
+                    border: '1px solid var(--border)',
+                    background: 'var(--card-bg)',
+                    opacity: isMuted ? 0.45 : 1,
+                    marginLeft: `${idx * 10}px`,
+                  }}
                 >
                   <button
                     type="button"

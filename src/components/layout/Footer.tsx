@@ -87,15 +87,27 @@ export function Footer() {
             {/* Nav — coluna centralizada */}
             <nav aria-label="Links do rodapé" className="flex flex-col items-center gap-4">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="font-sans text-sm transition-opacity hover:opacity-60" style={{ color: 'var(--text-secondary)' }}>
+                <Link key={link.href} href={link.href} className="font-sans text-lg transition-opacity hover:opacity-60" style={{ color: 'var(--text-secondary)' }}>
                   {link.label}
                 </Link>
               ))}
             </nav>
 
-            {/* Ícones sociais — alinhados à esquerda */}
-            <div className="w-full">
-              {socialIcons}
+            {/* Ícones sociais — centralizados */}
+            <div className="flex justify-center gap-2">
+              {socialLinks.map(({ label, href, icon, w, h }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-full transition-opacity hover:opacity-60"
+                  style={{ border: '1px solid var(--border)' }}
+                >
+                  <Image src={icon} alt="" width={w} height={h} aria-hidden="true" className="brightness-0 dark:brightness-100" />
+                </Link>
+              ))}
             </div>
           </div>
 

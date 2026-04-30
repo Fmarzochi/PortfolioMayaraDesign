@@ -1,14 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Container } from './Container';
-
-const navLinks = [
-  { label: 'Início', href: '/' },
-  { label: 'Projetos', href: '/projetos' },
-  { label: 'Sobre', href: '/sobre' },
-  { label: 'Experiência', href: '/#experiencia' },
-  { label: 'Contato', href: '/contato' },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
+import { LOCALE_LABELS } from '@/i18n/translations';
 
 function BehanceIcon() {
   return (
@@ -36,6 +32,22 @@ function LinkedInIcon() {
 }
 
 export function Footer() {
+  const { locale, t, cycleLocale } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.home, href: '/' },
+    { label: t.nav.projects, href: '/projetos' },
+    { label: t.nav.about, href: '/sobre' },
+    { label: t.nav.experience, href: '/#experiencia' },
+    { label: t.nav.contact, href: '/contato' },
+  ];
+
+  const socialLinks = [
+    { label: 'Behance', href: 'https://behance.net/talessarodrigues', Icon: BehanceIcon },
+    { label: 'WhatsApp', href: 'https://wa.me/553598074669', Icon: WhatsAppIcon },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/talessamayara/', Icon: LinkedInIcon },
+  ];
+
   return (
     <footer className="transition-colors duration-300" style={{ background: 'var(--bg-primary)' }}>
       <Container>
@@ -45,11 +57,13 @@ export function Footer() {
         >
           {/* Linha superior */}
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            {/* Esquerda: PT + CTA */}
+            {/* Esquerda: idioma + CTA */}
             <div className="flex flex-col gap-3">
               <button
                 type="button"
-                className="inline-flex w-fit items-center gap-1.5 font-sans text-xs font-medium transition-opacity hover:opacity-60"
+                onClick={cycleLocale}
+                aria-label={`Idioma atual: ${LOCALE_LABELS[locale]}. Clique para alternar.`}
+                className="inline-flex w-fit items-center gap-1.5 font-sans text-xs font-medium transition-all duration-200 hover:opacity-80 active:scale-95"
                 style={{ color: 'var(--text-muted)' }}
               >
                 <Image
@@ -60,7 +74,7 @@ export function Footer() {
                   aria-hidden="true"
                   className="brightness-0 dark:brightness-100 opacity-60"
                 />
-                PT
+                {LOCALE_LABELS[locale]}
                 <Image
                   src="/assets/icons/decorative-2.svg"
                   alt=""
@@ -76,7 +90,7 @@ export function Footer() {
                 className="inline-flex w-fit items-center gap-2.5 rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
                 style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
               >
-                Vamos trabalhar juntos
+                {t.footer.cta}
                 <span
                   className="inline-flex h-7 w-7 items-center justify-center rounded-full"
                   style={{ background: 'var(--accent)' }}
@@ -97,7 +111,7 @@ export function Footer() {
             <nav aria-label="Links do rodapé" className="flex flex-wrap gap-4 sm:gap-6">
               {navLinks.map((link) => (
                 <Link
-                  key={link.label}
+                  key={link.href}
                   href={link.href}
                   className="font-sans text-sm transition-opacity hover:opacity-60"
                   style={{ color: 'var(--text-secondary)' }}
@@ -107,13 +121,9 @@ export function Footer() {
               ))}
             </nav>
 
-            {/* Direita: Behance + WhatsApp + LinkedIn */}
+            {/* Direita: ícones sociais */}
             <div className="flex items-center gap-2">
-              {[
-                { label: 'Behance', href: 'https://behance.net/talessarodrigues', Icon: BehanceIcon },
-                { label: 'WhatsApp', href: 'https://wa.me/5500000000000', Icon: WhatsAppIcon },
-                { label: 'LinkedIn', href: 'https://linkedin.com/in/talessarodrigues', Icon: LinkedInIcon },
-              ].map(({ label, href, Icon }) => (
+              {socialLinks.map(({ label, href, Icon }) => (
                 <Link
                   key={label}
                   href={href}
@@ -163,7 +173,7 @@ export function Footer() {
         </div>
 
         <p className="py-4 text-center font-sans text-xs" style={{ color: 'var(--text-muted)' }}>
-          © {new Date().getFullYear()} Talessa Rodrigues. Todos os direitos reservados.
+          © {new Date().getFullYear()} Talessa Rodrigues. {t.footer.copyright}
         </p>
       </Container>
     </footer>

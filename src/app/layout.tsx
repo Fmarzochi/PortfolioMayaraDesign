@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Plus_Jakarta_Sans, Manrope } from 'next/font/google';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import './globals.css';
@@ -43,11 +44,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className="flex min-h-screen flex-col font-sans antialiased transition-colors duration-300"
         style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}
       >
-        <ThemeProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

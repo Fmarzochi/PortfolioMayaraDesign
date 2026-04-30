@@ -7,7 +7,6 @@
   --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 
-  /* Breakpoints extras */
   --breakpoint-3xl: 1920px;
   --breakpoint-4xl: 2560px;
 }
@@ -71,38 +70,87 @@ body {
   box-sizing: border-box;
 }
 
-img, video {
+img:not([data-nimg="fill"]) {
   max-width: 100%;
   height: auto;
 }
 
-/* ── Animação badge circular ──────────────────────── */
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Badge giratório ──────────────────────────────── */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
+.animate-spin-slow { animation: spin-slow 12s linear infinite; }
 
-.animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
+/* ── Scroll indicator ─────────────────────────────── */
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(7px); }
+}
+.animate-bounce-down { animation: bounce-down 2s ease-in-out infinite; }
+
+/* ── Celular 3D — perspectiva suave + levitação ───── */
+@keyframes float-3d {
+  0%, 100% {
+    transform: perspective(900px) rotateY(-10deg) rotateX(3deg) translateY(0px);
+  }
+  50% {
+    transform: perspective(900px) rotateY(-10deg) rotateX(3deg) translateY(-10px);
+  }
 }
 
-/* ── Fluid typography via clamp ───────────────────── */
+.hero-phone-3d {
+  animation: float-3d 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-phone-3d:hover {
+  animation-play-state: paused;
+}
+
+/* ── Scroll reveal — aparece ao entrar na viewport ── */
+/*
+  Elementos com .reveal iniciam invisíveis e deslocados.
+  Quando a classe .visible é adicionada (via IntersectionObserver),
+  eles transitam suavemente para a posição final.
+  O delay é controlado via CSS custom property --reveal-delay.
+*/
+.reveal {
+  opacity: 0;
+  transition:
+    opacity   0.65s ease var(--reveal-delay, 0s),
+    transform 0.65s ease var(--reveal-delay, 0s);
+}
+
+/* Direção de entrada */
+.reveal.from-bottom { transform: translateY(28px); }
+.reveal.from-left   { transform: translateX(-36px); }
+.reveal.from-right  { transform: translateX(36px); }
+
+/* Estado visível */
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Fluid typography ─────────────────────────────── */
 .fluid-hero {
   font-size: clamp(2rem, 5vw, 4.5rem);
   line-height: 1.1;
 }
-
 .fluid-h2 {
   font-size: clamp(1.75rem, 3.5vw, 3rem);
   line-height: 1.15;
 }
-
 .fluid-h3 {
   font-size: clamp(1.25rem, 2vw, 1.75rem);
   line-height: 1.2;
 }
 
-/* ── Utilitário: sem scroll horizontal ────────────── */
-.no-overflow {
-  overflow-x: hidden;
-}
+/* ── Utilitário ───────────────────────────────────── */
+.no-overflow { overflow-x: hidden; }

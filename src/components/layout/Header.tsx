@@ -5,17 +5,20 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Container } from './Container';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-
-const navLinks = [
-  { label: 'Início', href: '/' },
-  { label: 'Projetos', href: '/projetos' },
-  { label: 'Sobre', href: '/sobre' },
-  { label: 'Experiência', href: '/#experiencia' },
-  { label: 'Contato', href: '/contato' },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
+import { LOCALE_LABELS } from '@/i18n/translations';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { locale, t, cycleLocale } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.home, href: '/' },
+    { label: t.nav.projects, href: '/projetos' },
+    { label: t.nav.about, href: '/sobre' },
+    { label: t.nav.experience, href: '/#experiencia' },
+    { label: t.nav.contact, href: '/contato' },
+  ];
 
   return (
     <header
@@ -60,7 +63,9 @@ export function Header() {
             {/* Seletor de idioma */}
             <button
               type="button"
-              className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 font-sans text-xs font-medium transition-opacity hover:opacity-60"
+              onClick={cycleLocale}
+              aria-label={`Idioma atual: ${LOCALE_LABELS[locale]}. Clique para alternar.`}
+              className="inline-flex items-center gap-1 rounded-full px-3 py-1.5 font-sans text-xs font-medium transition-all duration-200 hover:opacity-80 active:scale-95"
               style={{ border: '1px solid var(--border)', color: 'var(--text-muted)' }}
             >
               <Image
@@ -71,7 +76,7 @@ export function Header() {
                 aria-hidden="true"
                 className="brightness-0 dark:brightness-100 opacity-70"
               />
-              PT
+              {LOCALE_LABELS[locale]}
               <Image
                 src="/assets/icons/decorative-2.svg"
                 alt=""
@@ -84,13 +89,13 @@ export function Header() {
 
             <Link
               href="/contato"
-              className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-all duration-200 whitespace-nowrap"
+              className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-all duration-200 whitespace-nowrap hover:opacity-80"
               style={{
                 border: '1px solid var(--border)',
                 color: 'var(--text-primary)',
               }}
             >
-              Entrar em Contato
+              {t.header.cta}
             </Link>
           </div>
 
@@ -99,10 +104,19 @@ export function Header() {
             <ThemeToggle />
             <button
               type="button"
+              onClick={cycleLocale}
+              aria-label={`Idioma: ${LOCALE_LABELS[locale]}`}
+              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-sans text-xs font-medium"
+              style={{ border: '1px solid var(--border)', color: 'var(--text-muted)' }}
+            >
+              {LOCALE_LABELS[locale]}
+            </button>
+            <button
+              type="button"
               onClick={() => setMenuOpen((v) => !v)}
               className="inline-flex items-center justify-center rounded-md p-2"
               style={{ color: 'var(--text-secondary)' }}
-              aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu de navegação'}
+              aria-label={menuOpen ? t.header.menuClose : t.header.menuOpen}
               aria-expanded={menuOpen}
             >
               {menuOpen ? (
@@ -142,7 +156,7 @@ export function Header() {
               className="mt-2 rounded-full px-3 py-2.5 text-center font-sans text-sm font-medium"
               style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
             >
-              Entrar em Contato
+              {t.header.cta}
             </Link>
           </nav>
         )}

@@ -1,14 +1,18 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function CTASection() {
+  const { t } = useLanguage();
+
   return (
     <section
-      className="relative overflow-hidden"
-      style={{ minHeight: '100svh' }}
+      className="relative overflow-hidden min-h-screen"
       aria-labelledby="cta-heading"
     >
-      {/* Foto — rosto centralizado */}
+      {/* Foto de fundo — ocupa toda a seção */}
       <div className="absolute inset-0">
         <Image
           src="/assets/images/cta-photo.png"
@@ -20,7 +24,7 @@ export function CTASection() {
           sizes="100vw"
           priority
         />
-        {/* Overlay sutil — só escurece levemente preservando o rosto */}
+        {/* Overlay sutil */}
         <div
           className="absolute inset-0"
           style={{ background: 'rgba(0,0,0,0.30)' }}
@@ -36,18 +40,18 @@ export function CTASection() {
         />
       </div>
 
-      {/* Conteúdo — centralizado sobre o rosto */}
-      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-4 py-16 text-center">
+      {/* Conteúdo — centralizado */}
+      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-16 text-center">
         <div className="flex flex-col items-center gap-5 max-w-xs sm:max-w-sm">
           <h2
             id="cta-heading"
             className="fluid-h2 font-display font-semibold leading-tight text-white"
           >
-            Comece hoje
+            {t.cta.heading}
           </h2>
 
           <p className="font-body text-sm leading-relaxed text-white/80 sm:text-base md:text-lg">
-            Criar um novo padrão de vida começa<br />com uma decisão simples
+            {t.cta.subtitle}
           </p>
 
           <Link
@@ -60,7 +64,7 @@ export function CTASection() {
               backdropFilter: 'blur(12px)',
             }}
           >
-            Converse comigo agora
+            {t.cta.btn}
             <span
               className="inline-flex h-7 w-7 items-center justify-center rounded-full"
               style={{ background: 'var(--accent)' }}

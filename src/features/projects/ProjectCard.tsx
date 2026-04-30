@@ -1,12 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Project } from '@/core/domain/Project';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const { t } = useLanguage();
+
   return (
     <article
       className="group flex flex-col overflow-hidden rounded-xl transition-all duration-200"
@@ -23,7 +28,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             alt={project.titulo}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
@@ -63,7 +68,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </ul>
       </div>
 
-      {/* Rodapé — link clicável com ícone do Figma */}
+      {/* Rodapé */}
       {project.linkProjeto && (
         <div
           className="px-4 py-3 sm:px-5 sm:py-4 lg:px-6"
@@ -74,7 +79,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             className="inline-flex items-center gap-2 font-sans text-sm font-medium transition-colors hover:opacity-70"
             style={{ color: 'var(--text-secondary)' }}
           >
-            Ver projeto
+            {t.projects.viewProject}
             <Image
               src="/assets/icons/arrow-up-right.svg"
               alt=""

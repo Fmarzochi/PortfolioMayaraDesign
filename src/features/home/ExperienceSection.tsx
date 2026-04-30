@@ -1,52 +1,85 @@
-const experiences = [
-  {
-    id: '1',
-    titulo: 'Projetos Acadêmicos',
-    periodo: '2022 — Atual',
-    descricao: [
-      'Desenvolvo projetos próprios com foco em aplicar UX/UI na prática, explorando desde a concepção até a implementação de soluções digitais.',
-      'Recentemente, projetei um cardápio digital para um delivery próprio, estruturando toda a jornada do usuário — navegação, escolha de produtos, checkout e entrega.',
-      'A solução foi pensada para ser simples, intuitiva e eficiente, reduzindo fricções na experiência e otimizando o tempo tanto do usuário quanto da operação.',
-      'O projeto evoluiu para o desenvolvimento de um sistema administrativo, com foco em gestão de estoque, controle de vendas e análise de custos, ampliando o impacto do design para além da interface.',
-    ],
-    lado: 'direita' as const,
-  },
-  {
-    id: '2',
-    titulo: 'UX/UI Designer — CatchUp Tech',
-    periodo: '03/2026 — Atual',
-    descricao: [
-      'Atuação na fase de discovery, com pesquisa, mapeamento de jornadas e identificação de oportunidades.',
-      'Criação de identidade visual e landing pages alinhadas ao usuário e aos objetivos do produto.',
-      'Aplicação de princípios de acessibilidade (WCAG), garantindo experiências mais inclusivas.',
-    ],
-    lado: 'esquerda' as const,
-  },
-  {
-    id: '3',
-    titulo: 'UX/UI Designer — Front End Fusion',
-    periodo: '2025 — Atual',
-    descricao: [
-      'Atuo como voluntária em projetos digitais, contribuindo com iniciativas como Kalita Fotografia e o desenvolvimento do site da Front End Fusion.',
-      'Participei das etapas de discovery e benchmark, evoluindo para a construção do design system (tipografia, cores, ícones e identidade visual) e definição de fluxos.',
-      'O projeto iniciou como uma landing page e está evoluindo para uma plataforma com área administrativa, voltada à gestão da comunidade, voluntários e ONGs.',
-    ],
-    lado: 'direita' as const,
-  },
-  {
-    id: '4',
-    titulo: 'UX/UI Designer — Crimson Mind Tech',
-    periodo: '08/2023 — 11/2025',
-    descricao: [
-      'Atuei no desenvolvimento de um sistema de gestão de estoque e vendas para uma loja de perfumes e salão de beleza, com foco em simplicidade e eficiência operacional.',
-      'O projeto foi pensado para ser intuitivo e fácil de usar no dia a dia, priorizando apenas as funcionalidades essenciais. Estruturei as áreas de controle de estoque, registro de vendas e cadastro de clientes e fornecedores, facilitando a organização das informações e reduzindo processos manuais.',
-      'A solução permitiu que a gestão do negócio se tornasse mais ágil, possibilitando a geração de relatórios diários e eliminando a necessidade de controles feitos manualmente, otimizando o tempo e a tomada de decisão.',
-    ],
-    lado: 'esquerda' as const,
-  },
-];
+'use client';
 
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useInView } from '@/hooks/useInView';
+
+type ExpItem = { title: string; period: string; desc: readonly string[] };
+
+/* ── Item mobile — reveal de baixo ─────────────────── */
+function MobileItem({ exp, index }: { exp: ExpItem; index: number }) {
+  const { ref, visible } = useInView<HTMLDivElement>({ threshold: 0.15 });
+
+  return (
+    <div
+      ref={ref}
+      className={`reveal from-bottom flex flex-col gap-3 border-l-2 pl-5 ${visible ? 'visible' : ''}`}
+      style={{
+        borderColor: 'var(--border)',
+        '--reveal-delay': `${index * 0.08}s`,
+      } as React.CSSProperties}
+    >
+      <h3 className="font-display text-lg font-semibold sm:text-xl" style={{ color: 'var(--text-primary)' }}>
+        {exp.title}
+      </h3>
+      <p className="font-sans text-sm" style={{ color: 'var(--text-muted)' }}>{exp.period}</p>
+      {exp.desc.map((p, i) => (
+        <p key={i} className="font-sans text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{p}</p>
+      ))}
+    </div>
+  );
+}
+
+/* ── Item desktop — reveal lateral alternado ─────── */
+function DesktopItem({ exp, isLeft, index }: { exp: ExpItem; isLeft: boolean; index: number }) {
+  const { ref, visible } = useInView<HTMLDivElement>({ threshold: 0.12 });
+  const direction = isLeft ? 'from-left' : 'from-right';
+
+  const content = (
+    <div
+      className={`reveal ${direction} ${visible ? 'visible' : ''} flex flex-col gap-3`}
+      style={{ '--reveal-delay': `${index * 0.08}s` } as React.CSSProperties}
+    >
+      <h3 className="font-display text-lg font-semibold lg:text-xl xl:text-2xl" style={{ color: 'var(--text-primary)' }}>
+        {exp.title}
+      </h3>
+      <p className="font-sans text-sm" style={{ color: 'var(--text-muted)' }}>{exp.period}</p>
+      {exp.desc.map((p, i) => (
+        <p key={i} className="font-sans text-sm leading-relaxed lg:text-base" style={{ color: 'var(--text-secondary)' }}>
+          {p}
+        </p>
+      ))}
+    </div>
+  );
+
+  return (
+    <div ref={ref} className="relative grid grid-cols-2 pb-16 lg:pb-20">
+      {/* Dot */}
+      <div
+        className="absolute left-1/2 top-1.5 h-3 w-3 -translate-x-1/2 rounded-full"
+        style={{ background: 'var(--text-muted)', border: '2px solid var(--bg-secondary)', zIndex: 1 }}
+        aria-hidden="true"
+      />
+      {isLeft ? (
+        <>
+          <div className="pr-10 lg:pr-16">{content}</div>
+          <div />
+        </>
+      ) : (
+        <>
+          <div />
+          <div className="pl-10 lg:pl-16">{content}</div>
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ── Seção principal ─────────────────────────────── */
 export function ExperienceSection() {
+  const { t } = useLanguage();
+  const items = t.experience.items;
+  const { ref: headingRef, visible: headingVisible } = useInView<HTMLDivElement>({ threshold: 0.2 });
+
   return (
     <section
       id="experiencia"
@@ -57,29 +90,29 @@ export function ExperienceSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10">
 
         {/* Cabeçalho */}
-        <div className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-2 md:items-end lg:mb-16">
+        <div
+          ref={headingRef}
+          className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-2 md:items-end lg:mb-16"
+        >
           <h2
             id="experience-heading"
-            className="fluid-h2 font-display font-semibold"
+            className={`reveal from-bottom fluid-h2 font-display font-semibold ${headingVisible ? 'visible' : ''}`}
             style={{ color: 'var(--text-primary)' }}
           >
-            Minha experiência em produtos digitais
+            {t.experience.heading}
           </h2>
-          <p className="font-body text-sm leading-relaxed sm:text-base md:text-right" style={{ color: 'var(--text-muted)' }}>
-            Atuação prática em projetos reais, do discovery à entrega de interfaces escaláveis.
+          <p
+            className={`reveal from-bottom font-body text-sm leading-relaxed sm:text-base md:text-right ${headingVisible ? 'visible' : ''}`}
+            style={{ color: 'var(--text-muted)', '--reveal-delay': '0.12s' } as React.CSSProperties}
+          >
+            {t.experience.subtitle}
           </p>
         </div>
 
         {/* Mobile: linear */}
         <div className="flex flex-col gap-8 md:hidden">
-          {experiences.map((exp) => (
-            <div key={exp.id} className="flex flex-col gap-3 border-l-2 pl-5" style={{ borderColor: 'var(--border)' }}>
-              <h3 className="font-display text-lg font-semibold sm:text-xl" style={{ color: 'var(--text-primary)' }}>{exp.titulo}</h3>
-              <p className="font-sans text-sm" style={{ color: 'var(--text-muted)' }}>{exp.periodo}</p>
-              {exp.descricao.map((p, i) => (
-                <p key={i} className="font-sans text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{p}</p>
-              ))}
-            </div>
+          {items.map((exp, idx) => (
+            <MobileItem key={exp.title} exp={exp} index={idx} />
           ))}
         </div>
 
@@ -91,39 +124,13 @@ export function ExperienceSection() {
             aria-hidden="true"
           />
           <div className="flex flex-col">
-            {experiences.map((exp) => (
-              <div key={exp.id} className="relative grid grid-cols-2 pb-16 lg:pb-20">
-                {/* Dot */}
-                <div
-                  className="absolute left-1/2 top-1.5 h-3 w-3 -translate-x-1/2 rounded-full"
-                  style={{ background: 'var(--text-muted)', border: '2px solid var(--bg-secondary)', zIndex: 1 }}
-                  aria-hidden="true"
-                />
-
-                {exp.lado === 'esquerda' ? (
-                  <>
-                    <div className="flex flex-col gap-3 pr-10 lg:pr-16">
-                      <h3 className="font-display text-lg font-semibold lg:text-xl xl:text-2xl" style={{ color: 'var(--text-primary)' }}>{exp.titulo}</h3>
-                      <p className="font-sans text-sm" style={{ color: 'var(--text-muted)' }}>{exp.periodo}</p>
-                      {exp.descricao.map((p, i) => (
-                        <p key={i} className="font-sans text-sm leading-relaxed lg:text-base" style={{ color: 'var(--text-secondary)' }}>{p}</p>
-                      ))}
-                    </div>
-                    <div />
-                  </>
-                ) : (
-                  <>
-                    <div />
-                    <div className="flex flex-col gap-3 pl-10 lg:pl-16">
-                      <h3 className="font-display text-lg font-semibold lg:text-xl xl:text-2xl" style={{ color: 'var(--text-primary)' }}>{exp.titulo}</h3>
-                      <p className="font-sans text-sm" style={{ color: 'var(--text-muted)' }}>{exp.periodo}</p>
-                      {exp.descricao.map((p, i) => (
-                        <p key={i} className="font-sans text-sm leading-relaxed lg:text-base" style={{ color: 'var(--text-secondary)' }}>{p}</p>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
+            {items.map((exp, idx) => (
+              <DesktopItem
+                key={exp.title}
+                exp={exp}
+                isLeft={idx % 2 !== 0}
+                index={idx}
+              />
             ))}
           </div>
         </div>

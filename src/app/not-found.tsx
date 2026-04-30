@@ -1,13 +1,19 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function NotFound() {
+  const { t } = useLanguage();
+  const nf = t.notFound;
+
   return (
     <div
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 text-center transition-colors duration-300"
       style={{ background: 'var(--bg-primary)' }}
     >
-      {/* Número 404 — fundo fantasma gigante */}
+      {/* 404 fantasma */}
       <span
         aria-hidden="true"
         className="pointer-events-none absolute select-none font-display font-semibold leading-none"
@@ -31,21 +37,21 @@ export default function NotFound() {
           className="font-sans text-sm font-medium uppercase tracking-widest"
           style={{ color: 'var(--accent)' }}
         >
-          Erro 404
+          {nf.badge}
         </span>
 
         <h1
           className="font-display text-3xl font-semibold leading-tight md:text-4xl"
           style={{ color: 'var(--text-primary)' }}
         >
-          Página Não Encontrada
+          {nf.heading}
         </h1>
 
         <p
           className="font-body max-w-sm text-base leading-relaxed"
           style={{ color: 'var(--text-secondary)' }}
         >
-          A página que você está procurando não existe ou foi movida.
+          {nf.body}
         </p>
 
         <Link
@@ -59,8 +65,9 @@ export default function NotFound() {
             width={16}
             height={16}
             aria-hidden="true"
+            className="brightness-[10]"
           />
-          Voltar ao início
+          {nf.btn}
         </Link>
       </div>
     </div>

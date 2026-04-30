@@ -1,29 +1,18 @@
-import Image from 'next/image';
+'use client';
 
-const miniCards = [
-  {
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>,
-    label: 'Experiências',
-    sub: 'Fintech, sistemas e plataformas digitais',
-  },
-  {
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>,
-    label: 'Processo completo',
-    sub: 'Do discovery à prototipação e validação',
-  },
-  {
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>,
-    label: 'Foco em resultado',
-    sub: 'Usabilidade, conversão e experiência do usuário',
-  },
-  {
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>,
-    label: 'Ferramentas',
-    sub: 'Figma, prototipação, design systems e handoff para desenvolvimento',
-  },
-];
+import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function AboutSection() {
+  const { t } = useLanguage();
+
+  const icons = [
+    <svg key="monitor" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>,
+    <svg key="grid" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>,
+    <svg key="pen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>,
+    <svg key="bars" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>,
+  ];
+
   return (
     <section
       id="sobre"
@@ -35,9 +24,9 @@ export function AboutSection() {
 
         {/* Mini-cards com ícones */}
         <div className="mb-10 grid grid-cols-2 gap-4 sm:mb-12 lg:grid-cols-4">
-          {miniCards.map((card) => (
+          {t.about.miniCards.map((card, i) => (
             <div key={card.label} className="flex flex-col gap-3 py-4">
-              <span style={{ color: 'var(--text-muted)' }}>{card.icon}</span>
+              <span style={{ color: 'var(--text-muted)' }}>{icons[i]}</span>
               <div>
                 <p className="font-display text-sm font-semibold sm:text-base" style={{ color: 'var(--text-primary)' }}>
                   {card.label}
@@ -56,13 +45,13 @@ export function AboutSection() {
           style={{ border: '1px solid var(--card-border)', background: 'var(--card-bg)' }}
         >
           {/* Foto */}
-          <div className="relative min-h-[300px] w-full sm:min-h-[380px] md:min-h-[480px] lg:min-h-[520px]">
+          <div className="relative w-full" style={{ minHeight: 'clamp(300px, 50vw, 600px)' }}>
             <Image
               src="/assets/images/talessa-photo.png"
-              alt="Talessa Rodrigues — UX/UI Designer"
+              alt={t.about.photoAlt}
               fill
               className="object-cover object-top"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
             />
           </div>
 
@@ -73,17 +62,17 @@ export function AboutSection() {
               className="fluid-h2 font-display font-semibold"
               style={{ color: 'var(--text-primary)' }}
             >
-              UX/UI Designer focada em transformar ideias em produtos eficientes
+              {t.about.heading}
             </h2>
 
             <p className="font-body text-sm leading-relaxed sm:text-base" style={{ color: 'var(--text-secondary)' }}>
-              Sou uma UX/UI Designer com foco em criação de produtos digitais que equilibram experiência do usuário, objetivos de negócio e viabilidade técnica.
+              {t.about.body1}
             </p>
             <p className="font-body text-sm leading-relaxed sm:text-base" style={{ color: 'var(--text-muted)' }}>
-              Atuo desde a fase de discovery até a entrega final, estruturando fluxos, interfaces e soluções que não só funcionam bem — mas geram resultado.
+              {t.about.body2}
             </p>
             <p className="font-body text-sm leading-relaxed sm:text-base" style={{ color: 'var(--text-muted)' }}>
-              Tenho experiência com projetos de fintech, sistemas e plataformas digitais, sempre buscando clareza, usabilidade e impacto real.
+              {t.about.body3}
             </p>
           </div>
         </div>

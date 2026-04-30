@@ -79,7 +79,7 @@ export function HeroSection() {
               {t.hero.cta}
               <span
                 className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
-                style={{ background: 'var(--accent)' }}
+                style={{ background: 'var(--card-bg)', border: '1px solid var(--border)' }}
               >
                 <Image
                   src="/assets/icons/arrow-up-right.svg"
@@ -87,7 +87,7 @@ export function HeroSection() {
                   width={13}
                   height={13}
                   aria-hidden="true"
-                  className="brightness-[10]"
+                  className="brightness-0 dark:brightness-[10]"
                 />
               </span>
             </Link>

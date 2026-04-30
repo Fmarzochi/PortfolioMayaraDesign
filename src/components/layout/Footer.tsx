@@ -56,7 +56,7 @@ export function Footer() {
                 style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
               >
                 {t.footer.cta}
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full" style={{ background: 'var(--accent)' }}>
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full" style={{ background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.25)' }}>
                   <Image src="/assets/icons/arrow-up-right.svg" alt="" width={12} height={12} aria-hidden="true" className="brightness-[10]" />
                 </span>
               </Link>
@@ -80,7 +80,7 @@ export function Footer() {
               style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
             >
               {t.footer.cta}
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full" style={{ background: 'var(--accent)' }}>
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full" style={{ background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.25)' }}>
                 <Image src="/assets/icons/arrow-up-right.svg" alt="" width={12} height={12} aria-hidden="true" className="brightness-[10]" />
               </span>
             </Link>

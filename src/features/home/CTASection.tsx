@@ -105,7 +105,7 @@ export function CTASection() {
             {t.cta.btn}
             <span
               className="inline-flex h-7 w-7 items-center justify-center rounded-full"
-              style={{ background: 'var(--accent)' }}
+              style={{ background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.30)' }}
             >
               <Image
                 src="/assets/icons/arrow-up-right.svg"

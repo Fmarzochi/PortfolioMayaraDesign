@@ -29,8 +29,8 @@ export function Header() {
       }}
     >
       <Container>
-        {/* Desktop: grid 3 colunas — logo | nav centrado | controles */}
-        <div className="hidden h-[72px] items-center md:grid md:grid-cols-[auto_1fr_auto] md:gap-6">
+        {/* Desktop: logo esquerda | nav absoluta centrada | controles direita */}
+        <div className="relative hidden h-[72px] items-center md:flex">
           {/* Logo */}
           <Link href="/" className="shrink-0 transition-opacity hover:opacity-70" aria-label="Talessa — página inicial">
             <Image
@@ -43,8 +43,11 @@ export function Header() {
             />
           </Link>
 
-          {/* Nav — verdadeiramente centrada */}
-          <nav aria-label="Navegação principal" className="flex items-center justify-center gap-7">
+          {/* Nav — absolutamente centrada na largura total do header */}
+          <nav
+            aria-label="Navegação principal"
+            className="absolute left-1/2 flex -translate-x-1/2 items-center gap-7"
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -58,7 +61,7 @@ export function Header() {
           </nav>
 
           {/* Direita — tema + idioma + CTA */}
-          <div className="flex items-center gap-3">
+          <div className="ml-auto flex items-center gap-3">
             <ThemeToggle />
 
             {/* Seletor de idioma */}

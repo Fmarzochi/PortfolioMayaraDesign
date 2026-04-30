@@ -12,13 +12,12 @@ export default async function HomePage() {
   const repository = new MockProjectRepository();
   const getProjects = new GetProjectsUseCase(repository);
   const projects = await getProjects.execute();
-  const featured = projects.filter((p) => p.destaque);
 
   return (
     <>
       <HeroSection />
       <ValuePropsSection />
-      <FeaturedProjects projects={featured} />
+      <FeaturedProjects projects={projects} />
       <AboutSection />
       <ExperienceSection />
       <FAQSection />

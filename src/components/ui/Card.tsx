@@ -3,12 +3,20 @@ import { cn } from '@/utils/tailwind-merge';
 
 interface CardProps {
   className?: string;
+  style?: React.CSSProperties;
   children: React.ReactNode;
 }
 
-export function Card({ className, children }: CardProps) {
+export function Card({ className, style, children }: CardProps) {
   return (
-    <div className={cn('rounded-lg border border-neutral-200 bg-white shadow-sm', className)}>
+    <div
+      className={cn('rounded-xl transition-colors duration-200', className)}
+      style={{
+        background: 'var(--card-bg)',
+        border: '1px solid var(--card-border)',
+        ...style,
+      }}
+    >
       {children}
     </div>
   );
@@ -32,7 +40,10 @@ export function CardContent({ className, children }: CardProps) {
 
 export function CardFooter({ className, children }: CardProps) {
   return (
-    <div className={cn('flex items-center p-6 pt-0', className)}>
+    <div
+      className={cn('flex items-center p-6 pt-0', className)}
+      style={{ borderTop: '1px solid var(--card-border)' }}
+    >
       {children}
     </div>
   );

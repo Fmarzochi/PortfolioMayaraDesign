@@ -2,11 +2,10 @@ import type { Metadata } from 'next';
 import { MockProjectRepository } from '@/data/repositories/MockProjectRepository';
 import { GetProjectsUseCase } from '@/core/useCases/GetProjectsUseCase';
 import { ProjectList } from '@/features/projects/ProjectList';
-import { Container } from '@/components/layout/Container';
 
 export const metadata: Metadata = {
   title: 'Projetos',
-  description: 'Veja todos os projetos de design desenvolvidos por Mayara.',
+  description: 'Todos os projetos de design — identidade visual, UI/UX e editorial.',
 };
 
 export default async function ProjetosPage() {
@@ -15,8 +14,13 @@ export default async function ProjetosPage() {
   const projects = await getProjects.execute();
 
   return (
-    <Container className="py-8">
-      <ProjectList projects={projects} />
-    </Container>
+    <div
+      className="min-h-screen py-16 transition-colors duration-300"
+      style={{ background: 'var(--bg-primary)' }}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10">
+        <ProjectList projects={projects} />
+      </div>
+    </div>
   );
 }

@@ -1,16 +1,28 @@
 import { MockProjectRepository } from '@/data/repositories/MockProjectRepository';
 import { GetProjectsUseCase } from '@/core/useCases/GetProjectsUseCase';
-import { ProjectList } from '@/features/projects/ProjectList';
-import { Container } from '@/components/layout/Container';
+import { HeroSection } from '@/features/home/HeroSection';
+import { ValuePropsSection } from '@/features/home/ValuePropsSection';
+import { FeaturedProjects } from '@/features/home/FeaturedProjects';
+import { AboutSection } from '@/features/home/AboutSection';
+import { ExperienceSection } from '@/features/home/ExperienceSection';
+import { FAQSection } from '@/features/home/FAQSection';
+import { CTASection } from '@/features/home/CTASection';
 
 export default async function HomePage() {
   const repository = new MockProjectRepository();
   const getProjects = new GetProjectsUseCase(repository);
   const projects = await getProjects.execute();
+  const featured = projects.filter((p) => p.destaque);
 
   return (
-    <Container className="py-8">
-      <ProjectList projects={projects} />
-    </Container>
+    <>
+      <HeroSection />
+      <ValuePropsSection />
+      <FeaturedProjects projects={featured} />
+      <AboutSection />
+      <ExperienceSection />
+      <FAQSection />
+      <CTASection />
+    </>
   );
 }

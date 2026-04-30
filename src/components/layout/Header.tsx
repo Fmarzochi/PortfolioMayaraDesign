@@ -88,7 +88,9 @@ export function Header() {
             </button>
 
             <Link
-              href="/contato"
+              href="https://wa.me/553598074669"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-all duration-200 whitespace-nowrap hover:opacity-80"
               style={{
                 border: '1px solid var(--border)',
@@ -151,7 +153,9 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href="/contato"
+              href="https://wa.me/553598074669"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               className="mt-2 rounded-full px-3 py-2.5 text-center font-sans text-sm font-medium"
               style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}

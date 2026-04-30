@@ -49,7 +49,9 @@ export function Footer() {
               </button>
               {/* CTA visível apenas no desktop aqui */}
               <Link
-                href="/contato"
+                href="https://wa.me/553598074669"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hidden lg:inline-flex w-fit items-center gap-2.5 rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
                 style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
               >
@@ -71,7 +73,9 @@ export function Footer() {
 
             {/* CTA visível apenas no mobile (abaixo do nav) */}
             <Link
-              href="/contato"
+              href="https://wa.me/553598074669"
+              target="_blank"
+              rel="noopener noreferrer"
               className="lg:hidden inline-flex w-fit items-center gap-2.5 rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
               style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
             >

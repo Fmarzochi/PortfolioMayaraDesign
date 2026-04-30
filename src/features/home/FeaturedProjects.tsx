@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { Project } from '@/core/domain/Project';
 import { FeaturedProjectCard } from '@/features/projects/FeaturedProjectCard';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -12,13 +12,24 @@ interface FeaturedProjectsProps {
 }
 
 export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
-  const [current, setCurrent] = useState(0);
   const { t } = useLanguage();
+  const [current, setCurrent] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
   const total = projects.length;
 
-  const prev = () => setCurrent((c) => (c - 1 + total) % total);
-  const next = () => setCurrent((c) => (c + 1) % total);
-  const get = (offset: number) => projects[(current + offset + total) % total];
+  const goTo = useCallback((idx: number) => {
+    const next = (idx + total) % total;
+    setCurrent(next);
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.children[next] as HTMLElement;
+    if (card) {
+      track.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
+    }
+  }, [total]);
+
+  const prev = () => goTo(current - 1);
+  const next = () => goTo(current + 1);
 
   return (
     <section
@@ -55,31 +66,19 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           </div>
         </div>
 
-        {/* Mobile: 1 card */}
-        <div className="md:hidden">
-          <FeaturedProjectCard project={get(0)} />
-        </div>
-
-        {/* Tablet md–lg: 2 cards */}
-        <div className="hidden md:grid md:grid-cols-2 md:gap-5 lg:hidden">
-          <FeaturedProjectCard project={get(0)} />
-          <FeaturedProjectCard project={get(1)} />
-        </div>
-
-        {/* Desktop lg+: 3 cards com peek lateral */}
-        <div className="hidden lg:flex lg:items-stretch lg:gap-4">
-          <div className="w-[200px] shrink-0 opacity-40 xl:w-[240px]" aria-hidden="true">
-            <FeaturedProjectCard project={get(-1)} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <FeaturedProjectCard project={get(0)} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <FeaturedProjectCard project={get(1)} />
-          </div>
-          <div className="w-[200px] shrink-0 opacity-40 xl:w-[240px]" aria-hidden="true">
-            <FeaturedProjectCard project={get(2)} />
-          </div>
+        {/* Trilha — todos os cards renderizados, scroll controlado pelas setas */}
+        <div
+          ref={trackRef}
+          className="hide-scrollbar flex gap-4 overflow-x-scroll"
+        >
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="flex-none w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)]"
+            >
+              <FeaturedProjectCard project={project} />
+            </div>
+          ))}
         </div>
 
         {/* Controles */}
@@ -103,14 +102,18 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           <div className="flex items-center gap-1.5">
             {projects.map((_, i) => (
               <button
-                key={i} type="button" onClick={() => setCurrent(i)}
+                key={i} type="button" onClick={() => goTo(i)}
                 aria-label={`${t.featured.dotLabel} ${i + 1}`}
                 className="h-1.5 rounded-full transition-all duration-300"
-                style={{ width: current === i ? '20px' : '6px', background: current === i ? 'var(--text-primary)' : 'var(--border)' }}
+                style={{
+                  width: current === i ? '20px' : '6px',
+                  background: current === i ? 'var(--text-primary)' : 'var(--border)',
+                }}
               />
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );

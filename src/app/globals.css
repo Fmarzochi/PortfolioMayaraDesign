@@ -175,3 +175,7 @@ video {
 
 /* ── Utilitário ───────────────────────────────────── */
 .no-overflow { overflow-x: hidden; }
+
+/* Esconde scrollbar mantendo scroll programático */
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }

@@ -3,12 +3,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Container } from './Container';
+import { LocaleDropdown } from '@/components/ui/LocaleDropdown';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { LOCALE_LABELS } from '@/i18n/translations';
-
 
 export function Footer() {
-  const { locale, t, cycleLocale } = useLanguage();
+  const { t } = useLanguage();
 
   const navLinks = [
     { label: t.nav.home, href: '/' },
@@ -67,24 +66,8 @@ export function Footer() {
 
           {/* ── MOBILE layout (< lg) ── */}
           <div className="flex flex-col items-center gap-6 lg:hidden">
-
-            {/* PT selector — centralizado */}
-            <button
-              type="button"
-              onClick={cycleLocale}
-              aria-label={`Idioma atual: ${LOCALE_LABELS[locale]}. Clique para alternar.`}
-              className="inline-flex items-center gap-1.5 font-sans text-xs font-medium transition-all duration-200 hover:opacity-80 active:scale-95"
-              style={{ color: 'var(--text-muted)' }}
-            >
-              <Image src="/assets/icons/decorative-1.svg" alt="" width={12} height={12} aria-hidden="true" className="brightness-0 dark:brightness-100 opacity-60" />
-              {LOCALE_LABELS[locale]}
-              <Image src="/assets/icons/decorative-2.svg" alt="" width={10} height={10} aria-hidden="true" className="brightness-0 dark:brightness-100 opacity-60" />
-            </button>
-
-            {/* CTA — largura total, texto à esquerda, seta à direita */}
+            <LocaleDropdown variant="ghost" direction="down" />
             {ctaLink('inline-flex w-full items-center justify-between rounded-full px-5 py-3 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80')}
-
-            {/* Nav — coluna centralizada */}
             <nav aria-label="Links do rodapé" className="flex flex-col items-center gap-4">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="font-sans text-lg transition-opacity hover:opacity-60" style={{ color: 'var(--text-secondary)' }}>
@@ -92,8 +75,6 @@ export function Footer() {
                 </Link>
               ))}
             </nav>
-
-            {/* Ícones sociais — centralizados */}
             <div className="flex justify-center gap-2">
               {socialLinks.map(({ label, href, icon, w, h }) => (
                 <Link
@@ -113,24 +94,10 @@ export function Footer() {
 
           {/* ── DESKTOP layout (lg+) ── */}
           <div className="hidden lg:flex lg:items-center lg:justify-between">
-
-            {/* Esquerda: PT + CTA */}
             <div className="flex flex-col gap-3">
-              <button
-                type="button"
-                onClick={cycleLocale}
-                aria-label={`Idioma atual: ${LOCALE_LABELS[locale]}. Clique para alternar.`}
-                className="inline-flex w-fit items-center gap-1.5 font-sans text-xs font-medium transition-all duration-200 hover:opacity-80 active:scale-95"
-                style={{ color: 'var(--text-muted)' }}
-              >
-                <Image src="/assets/icons/decorative-1.svg" alt="" width={12} height={12} aria-hidden="true" className="brightness-0 dark:brightness-100 opacity-60" />
-                {LOCALE_LABELS[locale]}
-                <Image src="/assets/icons/decorative-2.svg" alt="" width={10} height={10} aria-hidden="true" className="brightness-0 dark:brightness-100 opacity-60" />
-              </button>
+              <LocaleDropdown variant="ghost" direction="up" />
               {ctaLink('inline-flex w-fit items-center gap-2.5 rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80')}
             </div>
-
-            {/* Centro: Nav */}
             <nav aria-label="Links do rodapé" className="flex flex-wrap gap-6">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="font-sans text-sm transition-opacity hover:opacity-60" style={{ color: 'var(--text-secondary)' }}>
@@ -138,8 +105,6 @@ export function Footer() {
                 </Link>
               ))}
             </nav>
-
-            {/* Direita: Ícones sociais */}
             {socialIcons}
           </div>
 

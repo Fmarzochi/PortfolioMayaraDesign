@@ -5,12 +5,12 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Container } from './Container';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { LocaleDropdown } from '@/components/ui/LocaleDropdown';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { LOCALE_LABELS } from '@/i18n/translations';
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { locale, t, cycleLocale } = useLanguage();
+  const { t } = useLanguage();
 
   const navLinks = [
     { label: t.nav.home, href: '/' },
@@ -28,29 +28,30 @@ export function Header() {
       <Container>
 
         {/* ── Desktop ── */}
-        <div className="hidden h-[72px] items-center md:flex">
+        <div className="relative hidden h-[72px] items-center md:flex">
 
-          {/* Esquerda — ocupa flex-1 para balancear com a direita */}
-          <div className="flex flex-1 items-center">
-            <Link href="/" className="shrink-0 transition-opacity hover:opacity-70" aria-label="Talessa — página inicial">
-              <Image
-                src="/assets/branding/logo.svg"
-                alt="Talessa Rodrigues design"
-                width={140}
-                height={26}
-                className="brightness-0 dark:brightness-100"
-                priority
-              />
-            </Link>
-          </div>
+          {/* Logo — esquerda */}
+          <Link href="/" className="shrink-0 transition-opacity hover:opacity-70" aria-label="Talessa — página inicial">
+            <Image
+              src="/assets/branding/logo.svg"
+              alt="Talessa Rodrigues design"
+              width={158}
+              height={30}
+              className="brightness-0 dark:brightness-100"
+              priority
+            />
+          </Link>
 
-          {/* Centro — nav naturalmente centrada */}
-          <nav aria-label="Navegação principal" className="flex shrink-0 items-center gap-8">
+          {/* Nav — absolutamente centrado; não desloca com troca de idioma */}
+          <nav
+            aria-label="Navegação principal"
+            className="absolute left-1/2 flex -translate-x-1/2 items-center gap-6 xl:gap-8"
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-sans text-sm font-medium whitespace-nowrap transition-opacity hover:opacity-60"
+                className="font-sans text-sm font-medium whitespace-nowrap transition-opacity hover:opacity-60 xl:text-base"
                 style={{ color: 'var(--text-primary)' }}
               >
                 {link.label}
@@ -58,29 +59,16 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Direita — ocupa flex-1, alinhado à direita */}
-          <div className="flex flex-1 items-center justify-end gap-3">
+          {/* Controles — direita */}
+          <div className="ml-auto flex items-center gap-3">
             <ThemeToggle />
-
-            {/* Idioma */}
-            <button
-              type="button"
-              onClick={cycleLocale}
-              aria-label={`Idioma: ${LOCALE_LABELS[locale]}`}
-              className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 font-sans text-xs font-medium transition-all duration-200 hover:opacity-80"
-              style={{ border: '1px solid var(--border)', color: 'var(--text-muted)' }}
-            >
-              <Image src="/assets/icons/decorative-1.svg" alt="" width={13} height={13} aria-hidden="true" className="brightness-0 dark:brightness-100 opacity-70" />
-              <Image src="/assets/icons/decorative-2.svg" alt="" width={10} height={10} aria-hidden="true" className="brightness-0 dark:brightness-100 opacity-70" />
-            </button>
-
-            {/* CTA */}
+            <LocaleDropdown variant="pill-dark" direction="down" />
             <Link
               href="https://wa.me/553598074669"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full px-5 py-2.5 font-sans text-sm font-medium whitespace-nowrap transition-all duration-200 hover:opacity-80"
-              style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+              className="inline-flex h-10 items-center gap-2 rounded-full px-5 font-sans text-sm font-medium whitespace-nowrap transition-all duration-200 hover:opacity-80 active:scale-95"
+              style={{ border: '1px solid var(--border)', color: 'var(--text-primary)', background: 'rgba(255,255,255,0.07)' }}
             >
               {t.header.cta}
             </Link>
@@ -94,15 +82,7 @@ export function Header() {
           </Link>
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <button
-              type="button"
-              onClick={cycleLocale}
-              aria-label={`Idioma: ${LOCALE_LABELS[locale]}`}
-              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 font-sans text-xs font-medium"
-              style={{ border: '1px solid var(--border)', color: 'var(--text-muted)' }}
-            >
-              {LOCALE_LABELS[locale]}
-            </button>
+            <LocaleDropdown variant="border" direction="down" />
             <button
               type="button"
               onClick={() => setMenuOpen((v) => !v)}

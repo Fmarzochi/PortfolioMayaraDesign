@@ -147,19 +147,39 @@ export function HeroSection() {
             />
           </div>
 
-          {/* Badge circular giratório */}
+          {/* Badge circular — texto gira, seta fica fixa apontando para baixo */}
           <div
-            className="absolute animate-spin-slow"
-            style={{ bottom: '0px', right: '-4px' }}
+            className="absolute"
+            style={{
+              bottom: '0px',
+              right: '-4px',
+              width: 'clamp(68px, 6.5vw, 90px)',
+              height: 'clamp(68px, 6.5vw, 90px)',
+            }}
           >
+            {/* Anel de texto giratório */}
             <Image
               src="/assets/icons/badge-conheca-trabalho.svg"
               alt={t.hero.badgeAlt}
               width={90}
               height={90}
-              className="dark:brightness-100 brightness-0 opacity-70"
-              style={{ width: 'clamp(68px, 6.5vw, 90px)', height: 'auto' }}
+              className="animate-spin-slow brightness-0 dark:brightness-100 opacity-70"
+              style={{ width: '100%', height: '100%' }}
             />
+            {/* Seta travada apontando para baixo */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <svg
+                viewBox="54 46 48 65"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                className="brightness-0 dark:brightness-100 opacity-70"
+                style={{ width: '38%', height: '38%' }}
+              >
+                <path d="M100.642 87.7443L79.6773 108.7H76.5313L55.567 87.7443" stroke="white" strokeWidth="2.52822" strokeMiterlimit="10"/>
+                <path d="M78.109 108.7V46.0001" stroke="white" strokeWidth="2.52822" strokeMiterlimit="10"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>

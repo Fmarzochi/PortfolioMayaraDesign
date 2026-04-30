@@ -60,12 +60,13 @@ export default function NotFound() {
           style={{ background: 'var(--accent)', color: '#F4F5F6' }}
         >
           <Image
-            src="/assets/icons/arrow-left.svg"
+            src="/assets/icons/arrow-up-right.svg"
             alt=""
             width={16}
             height={16}
             aria-hidden="true"
             className="brightness-[10]"
+            style={{ transform: 'rotate(180deg)' }}
           />
           {nf.btn}
         </Link>

@@ -89,14 +89,14 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
               className="inline-flex h-9 w-9 items-center justify-center rounded-full transition-opacity hover:opacity-60 sm:h-10 sm:w-10"
               style={{ border: '1px solid var(--border)' }}
             >
-              <Image src="/assets/icons/arrow-left.svg" alt="" width={16} height={16} aria-hidden="true" className="brightness-0 dark:brightness-100" />
+              <Image src="/assets/icons/arrow-up-right.svg" alt="" width={16} height={16} aria-hidden="true" className="brightness-0 dark:brightness-100" style={{ transform: 'rotate(180deg)' }} />
             </button>
             <button
               type="button" onClick={next} aria-label={t.featured.next}
               className="inline-flex h-9 w-9 items-center justify-center rounded-full transition-opacity hover:opacity-60 sm:h-10 sm:w-10"
               style={{ border: '1px solid var(--border)' }}
             >
-              <Image src="/assets/icons/arrow-right.svg" alt="" width={16} height={16} aria-hidden="true" className="brightness-0 dark:brightness-100" />
+              <Image src="/assets/icons/arrow-up-right.svg" alt="" width={16} height={16} aria-hidden="true" className="brightness-0 dark:brightness-100" />
             </button>
           </div>
           <div className="flex items-center gap-1.5">

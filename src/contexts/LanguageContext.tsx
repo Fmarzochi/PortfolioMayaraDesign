@@ -6,6 +6,7 @@ import { Locale, Translations, LOCALE_CYCLE, translations } from '@/i18n/transla
 interface LanguageContextType {
   locale: Locale;
   t: Translations;
+  setLocale: (l: Locale) => void;
   cycleLocale: () => void;
 }
 
@@ -21,7 +22,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const t = translations[locale] as Translations;
 
   return (
-    <LanguageContext.Provider value={{ locale, t, cycleLocale }}>
+    <LanguageContext.Provider value={{ locale, t, setLocale, cycleLocale }}>
       {children}
     </LanguageContext.Provider>
   );

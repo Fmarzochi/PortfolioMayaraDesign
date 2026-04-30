@@ -20,9 +20,9 @@ export function ThemeToggle() {
       type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={isDark ? 'Ativar modo claro' : 'Ativar modo escuro'}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-200"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-full transition-all duration-200"
       style={{
-        borderColor: 'var(--border)',
+        background: 'var(--btn-icon-bg)',
         color: 'var(--text-muted)',
       }}
       onMouseEnter={(e) => {

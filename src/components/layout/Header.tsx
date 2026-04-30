@@ -29,7 +29,8 @@ export function Header() {
       }}
     >
       <Container>
-        <div className="flex h-[72px] items-center justify-between gap-4">
+        {/* Desktop: grid 3 colunas — logo | nav centrado | controles */}
+        <div className="hidden h-[72px] items-center md:grid md:grid-cols-[auto_1fr_auto] md:gap-6">
           {/* Logo */}
           <Link href="/" className="shrink-0 transition-opacity hover:opacity-70" aria-label="Talessa — página inicial">
             <Image
@@ -42,8 +43,8 @@ export function Header() {
             />
           </Link>
 
-          {/* Nav desktop — centralizada */}
-          <nav aria-label="Navegação principal" className="hidden flex-1 items-center justify-center gap-7 md:flex">
+          {/* Nav — verdadeiramente centrada */}
+          <nav aria-label="Navegação principal" className="flex items-center justify-center gap-7">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -56,8 +57,8 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Direita — PT + CTA */}
-          <div className="hidden items-center gap-3 md:flex">
+          {/* Direita — tema + idioma + CTA */}
+          <div className="flex items-center gap-3">
             <ThemeToggle />
 
             {/* Seletor de idioma */}
@@ -101,8 +102,14 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Mobile */}
-          <div className="flex items-center gap-2 md:hidden">
+        </div>
+
+        {/* Mobile: flex simples logo | controles */}
+        <div className="flex h-[72px] items-center justify-between md:hidden">
+          <Link href="/" className="shrink-0 transition-opacity hover:opacity-70" aria-label="Talessa — página inicial">
+            <Image src="/assets/branding/logo.svg" alt="Talessa" width={120} height={22} className="dark:brightness-100 brightness-0" priority />
+          </Link>
+          <div className="flex items-center gap-2">
             <ThemeToggle />
             <button
               type="button"

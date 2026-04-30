@@ -33,7 +33,7 @@ export function Footer() {
       style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
     >
       {t.footer.cta}
-      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.25)' }}>
+      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: 'var(--accent)' }}>
         <Image src="/assets/icons/arrow-up-right.svg" alt="" width={13} height={13} aria-hidden="true" className="brightness-[10]" />
       </span>
     </Link>

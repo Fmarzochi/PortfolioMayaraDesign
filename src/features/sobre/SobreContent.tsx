@@ -66,7 +66,9 @@ export function SobreContent() {
             </p>
 
             <Link
-              href="/contato"
+              href="https://wa.me/553598074669"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-2 inline-flex w-fit items-center gap-2.5 rounded-full px-5 py-3 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
               style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
             >
@@ -79,6 +81,25 @@ export function SobreContent() {
               </span>
             </Link>
           </div>
+        </div>
+
+        {/* Faixa de 4 ícones — pilares */}
+        <div className="mb-16 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {[
+            { icon: '/assets/icons/experiencias.svg', label: 'Experiências', w: 20, h: 20 },
+            { icon: '/assets/icons/icone-processo-completo.svg', label: 'Processo completo', w: 20, h: 20 },
+            { icon: '/assets/icons/foco-em-resultado.svg', label: 'Foco em resultado', w: 20, h: 20 },
+            { icon: '/assets/icons/ferramentas.svg', label: 'Ferramentas', w: 20, h: 20 },
+          ].map(({ icon, label, w, h }) => (
+            <div
+              key={label}
+              className="flex items-center gap-2.5 rounded-xl px-4 py-3"
+              style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)' }}
+            >
+              <Image src={icon} alt="" width={w} height={h} aria-hidden="true" className="shrink-0 brightness-0 dark:brightness-100 opacity-70" />
+              <span className="font-sans text-xs font-medium sm:text-sm" style={{ color: 'var(--text-secondary)' }}>{label}</span>
+            </div>
+          ))}
         </div>
 
         {/* Habilidades */}

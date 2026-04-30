@@ -96,8 +96,8 @@ export function CTASection() {
             rel="noopener noreferrer"
             className="mt-2 inline-flex items-center gap-3 rounded-full px-6 py-3 font-sans text-sm font-medium transition-all duration-200 hover:opacity-90"
             style={{
-              background: 'rgba(255,255,255,0.10)',
-              border: '1px solid rgba(255,255,255,0.30)',
+              background: 'rgba(255,255,255,0.08)',
+              border: '1px solid rgba(255,255,255,0.25)',
               color: '#fff',
               backdropFilter: 'blur(12px)',
             }}
@@ -105,7 +105,7 @@ export function CTASection() {
             {t.cta.btn}
             <span
               className="inline-flex h-7 w-7 items-center justify-center rounded-full"
-              style={{ background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.30)' }}
+              style={{ background: 'var(--accent)' }}
             >
               <Image
                 src="/assets/icons/arrow-up-right.svg"

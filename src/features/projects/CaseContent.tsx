@@ -102,8 +102,8 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
                 key={tag}
                 className="rounded-full px-3 py-1 font-sans text-xs font-semibold uppercase tracking-wide"
                 style={{
-                  background: '#18181B',
-                  border: '1px solid #27272A',
+                  background: 'var(--card-bg)',
+                  border: '1px solid var(--card-border)',
                   color: 'var(--text-muted)',
                 }}
               >

@@ -14,8 +14,8 @@
 /* ── Light mode ───────────────────────────────────── */
 :root {
   --bg-primary:   #FAFAFA;
-  --bg-secondary: #F4F5F6;
-  --bg-hero:      #F7F7F7;
+  --bg-secondary: #FAFAFA;
+  --bg-hero:      #FAFAFA;
 
   --text-primary:   #09090A;
   --text-secondary: #4A596D;
@@ -37,7 +37,7 @@
 /* ── Dark mode ────────────────────────────────────── */
 .dark {
   --bg-primary:   #0C0E0F;
-  --bg-secondary: #000000;
+  --bg-secondary: #0C0E0F;
   --bg-hero:      #0C0E0F;
 
   --text-primary:   #F4F5F6;
@@ -61,6 +61,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -144,7 +145,7 @@ video {
 
 /* ── Fluid typography ─────────────────────────────── */
 .fluid-hero {
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-size: clamp(1.75rem, 3.8vw, 3.5rem);
   line-height: 1.1;
 }
 .fluid-h2 {

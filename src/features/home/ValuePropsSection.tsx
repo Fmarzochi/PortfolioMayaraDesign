@@ -43,7 +43,6 @@ export function ValuePropsSection() {
           backgroundRepeat: 'no-repeat',
         }}
       />
-      <div aria-hidden="true" className="h-px w-full" style={{ background: 'var(--border)' }} />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-12 sm:px-6 sm:pt-14 lg:px-8 xl:px-10">
 

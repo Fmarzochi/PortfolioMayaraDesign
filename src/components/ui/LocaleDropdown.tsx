@@ -30,7 +30,7 @@ export function LocaleDropdown({ variant = 'pill-dark', direction = 'down' }: Lo
 
   const triggerStyle =
     variant === 'pill-dark'
-      ? { background: 'var(--btn-icon-bg)', color: 'var(--text-muted)' }
+      ? { border: '1px solid var(--border)', background: 'transparent', color: 'var(--text-muted)' }
       : variant === 'border'
       ? { border: '1px solid var(--border)', color: 'var(--text-muted)' }
       : { color: 'var(--text-muted)' };

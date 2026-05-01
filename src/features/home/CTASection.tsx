@@ -11,6 +11,8 @@ export function CTASection() {
     <section
       className="relative overflow-hidden min-h-screen"
       aria-labelledby="cta-heading"
+      data-bg-light="#1A1A1A"
+      data-bg-dark="#0A0A0A"
     >
       {/* Foto de fundo — ocupa toda a seção */}
       <div className="absolute inset-0">

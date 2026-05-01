@@ -67,7 +67,7 @@ export function Footer() {
           {/* ── MOBILE layout (< lg) ── */}
           <div className="flex flex-col items-center gap-6 lg:hidden">
             <LocaleDropdown variant="ghost" direction="down" />
-            {ctaLink('inline-flex w-full items-center justify-between rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80')}
+            {ctaLink('inline-flex w-fit items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80')}
             <nav aria-label="Links do rodapé" className="flex flex-col items-center gap-4">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="font-sans text-lg transition-opacity hover:opacity-60" style={{ color: 'var(--text-secondary)' }}>

@@ -22,7 +22,8 @@ export function ThemeToggle() {
       aria-label={isDark ? 'Ativar modo claro' : 'Ativar modo escuro'}
       className="inline-flex h-10 w-10 items-center justify-center rounded-full transition-all duration-200"
       style={{
-        background: 'var(--btn-icon-bg)',
+        border: '1px solid var(--border)',
+        background: 'transparent',
         color: 'var(--text-muted)',
       }}
       onMouseEnter={(e) => {

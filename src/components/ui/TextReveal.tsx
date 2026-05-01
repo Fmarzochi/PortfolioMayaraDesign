@@ -53,17 +53,19 @@ export function TextReveal({ children, as: Tag = 'span', className, style, id }:
       id={id}
     >
       {words.map((word, i) => (
-        <span
-          key={i}
-          style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}
-        >
-          <span
-            data-word-inner
-            style={{ display: 'inline-block' }}
-          >
-            {word}
-            {i < words.length - 1 ? ' ' : ''}
+        <span key={i} style={{ display: 'inline-block' }}>
+          <span style={{
+            display: 'inline-block',
+            overflow: 'hidden',
+            verticalAlign: 'bottom',
+            paddingBottom: '0.2em',
+            marginBottom: '-0.2em',
+          }}>
+            <span data-word-inner style={{ display: 'inline-block' }}>
+              {word}
+            </span>
           </span>
+          {i < words.length - 1 ? ' ' : ''}
         </span>
       ))}
     </Tag>

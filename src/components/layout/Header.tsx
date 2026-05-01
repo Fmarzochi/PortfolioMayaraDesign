@@ -28,10 +28,14 @@ export function Header() {
       <Container>
 
         {/* ── Desktop ── */}
-        <div className="relative hidden h-[72px] items-center md:flex">
+        <div className="relative hidden h-[72px] md:block">
 
-          {/* Logo — esquerda */}
-          <Link href="/" className="shrink-0 transition-opacity hover:opacity-70" aria-label="Talessa — página inicial">
+          {/* Logo — ancorado na esquerda */}
+          <Link
+            href="/"
+            className="absolute left-0 top-1/2 -translate-y-1/2 shrink-0 transition-opacity hover:opacity-70"
+            aria-label="Talessa — página inicial"
+          >
             <Image
               src="/assets/branding/logo.svg"
               alt="Talessa Rodrigues design"
@@ -42,10 +46,10 @@ export function Header() {
             />
           </Link>
 
-          {/* Nav — absolutamente centrado; não desloca com troca de idioma */}
+          {/* Nav — ancorado no centro exato; troca de idioma não afeta logo nem controles */}
           <nav
             aria-label="Navegação principal"
-            className="absolute left-1/2 flex -translate-x-1/2 items-center gap-6 xl:gap-8"
+            className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-6 xl:gap-8"
           >
             {navLinks.map((link) => (
               <Link
@@ -59,8 +63,8 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Controles — direita */}
-          <div className="ml-auto flex items-center gap-3">
+          {/* Controles — ancorados na direita; nunca se movem */}
+          <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-3">
             <ThemeToggle />
             <LocaleDropdown variant="pill-dark" direction="down" />
             <Link

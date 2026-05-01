@@ -85,16 +85,16 @@ export function HeroSection() {
             >
               {t.hero.cta}
               <span
-                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
-                style={{ background: 'var(--btn-icon-bg)' }}
+                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+                style={{ background: 'var(--accent)' }}
               >
                 <Image
                   src="/assets/icons/arrow-up-right.svg"
                   alt=""
-                  width={17}
-                  height={17}
+                  width={20}
+                  height={20}
                   aria-hidden="true"
-                  className="brightness-0 dark:brightness-[10]"
+                  className="brightness-[10]"
                 />
               </span>
             </Link>

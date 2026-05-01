@@ -9,7 +9,7 @@ const mockProjects: Project[] = [
     descricao: 'Plataforma institucional focada em apresentar soluções digitais com clareza e estratégia. Estruturei a navegação e o visual para transmitir inovação e gerar conversão.',
     tecnologias: ['UI/UX DESIGN', 'BRANDING', 'FIGMA'],
     categoria: 'website',
-    imagemUrl: undefined,
+    imagemUrl: '/assets/images/projeto-catchup.png',
     destaque: true,
     cor: '#0a0a1a',
     cliente: 'catchup tech',
@@ -47,6 +47,12 @@ const mockProjects: Project[] = [
           'Design estratégico impacta diretamente na percepção do usuário',
         ],
       },
+      imagens: [
+        '/assets/case-studies/catchup/screen-1.png',
+        '/assets/case-studies/catchup/screen-2.png',
+        '/assets/case-studies/catchup/screen-3.png',
+        '/assets/case-studies/catchup/screen-4.png',
+      ],
     },
   },
   {
@@ -100,6 +106,12 @@ const mockProjects: Project[] = [
           'Reduzir fricção melhora significativamente a jornada',
         ],
       },
+      imagens: [
+        '/assets/case-studies/cardapio-web/screen-1.png',
+        '/assets/case-studies/cardapio-web/screen-2.png',
+        '/assets/case-studies/cardapio-web/screen-3.png',
+        '/assets/case-studies/cardapio-web/screen-4.png',
+      ],
     },
   },
   {

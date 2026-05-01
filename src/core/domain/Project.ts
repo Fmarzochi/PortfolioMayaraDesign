@@ -16,6 +16,7 @@ export interface CaseStudy {
     designInterfacePrioridades?: string[];
     learnings: string[];
   };
+  imagens?: string[];
 }
 
 export interface Project {

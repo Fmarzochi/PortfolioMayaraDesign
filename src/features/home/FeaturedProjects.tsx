@@ -2,7 +2,23 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
+
+function ChevronLeft() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 25 25" fill="none" aria-hidden="true">
+      <path d="M15.5 18.1421L9.5 12.1421L15.5 6.14209" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
+    </svg>
+  );
+}
+
+function ChevronRight() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 25 25" fill="none" aria-hidden="true">
+      <path d="M9.5 18.1421L15.5 12.1421L9.5 6.14209" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
+    </svg>
+  );
+}
 import { Project } from '@/core/domain/Project';
 import { FeaturedProjectCard } from '@/features/projects/FeaturedProjectCard';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -18,23 +34,39 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
   const total = projects.length;
 
   const goTo = useCallback((idx: number) => {
-    const next = (idx + total) % total;
+    const next = Math.max(0, Math.min(idx, total - 1));
     setCurrent(next);
     const track = trackRef.current;
     if (!track) return;
     const card = track.children[next] as HTMLElement;
-    if (card) {
-      track.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
-    }
+    if (card) track.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
   }, [total]);
 
-  const prev = () => goTo(current - 1);
-  const next = () => goTo(current + 1);
+  // Sync indicator on manual scroll
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const onScroll = () => {
+      const cards = Array.from(track.children) as HTMLElement[];
+      let closest = 0;
+      let minDist = Infinity;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft - track.scrollLeft);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      setCurrent(closest);
+    };
+    track.addEventListener('scroll', onScroll, { passive: true });
+    return () => track.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const canPrev = current > 0;
+  const canNext = current < total - 1;
 
   return (
     <section
       aria-labelledby="featured-heading"
-      className="overflow-hidden py-16 transition-colors duration-300 md:py-24 lg:py-28"
+      className="py-16 transition-colors duration-300 md:py-24 lg:py-28"
       style={{ background: 'var(--bg-primary)' }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10">
@@ -42,15 +74,25 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
         {/* Header */}
         <div className="mb-10 grid grid-cols-1 gap-5 sm:mb-12 md:grid-cols-2 md:items-end">
           <div className="flex flex-col gap-2">
-            <span className="font-sans text-xs font-semibold uppercase tracking-widest sm:text-sm" style={{ color: 'var(--accent)' }}>
+            <span
+              className="font-sans text-xs font-semibold uppercase tracking-widest sm:text-sm"
+              style={{ color: 'var(--accent)' }}
+            >
               {t.featured.badge}
             </span>
-            <h2 id="featured-heading" className="fluid-h2 font-display font-semibold" style={{ color: 'var(--text-primary)' }}>
+            <h2
+              id="featured-heading"
+              className="fluid-h2 font-display font-semibold"
+              style={{ color: 'var(--text-primary)' }}
+            >
               {t.featured.heading}
             </h2>
           </div>
           <div className="flex flex-col gap-3 md:items-end md:text-right">
-            <p className="font-body text-sm leading-relaxed md:max-w-[28ch]" style={{ color: 'var(--text-muted)' }}>
+            <p
+              className="font-body text-sm leading-relaxed md:max-w-[28ch]"
+              style={{ color: 'var(--text-muted)' }}
+            >
               {t.featured.desc}
             </p>
             <Link
@@ -59,62 +101,134 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
               style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
             >
               {t.featured.ctaBtn}
-              <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ background: 'var(--accent)' }}>
-                <Image src="/assets/icons/arrow-up-right.svg" alt="" width={11} height={11} aria-hidden="true" className="brightness-[10]" />
+              <span
+                className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                style={{ background: 'var(--accent)' }}
+              >
+                <Image
+                  src="/assets/icons/arrow-up-right.svg"
+                  alt=""
+                  width={11}
+                  height={11}
+                  aria-hidden="true"
+                  className="brightness-[10]"
+                />
               </span>
             </Link>
           </div>
         </div>
 
-        {/* Trilha — todos os cards renderizados, scroll controlado pelas setas */}
-        <div
-          ref={trackRef}
-          className="hide-scrollbar flex gap-4 overflow-x-scroll"
-        >
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="flex-none w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-10.667px)]"
-            >
-              <FeaturedProjectCard project={project} />
-            </div>
-          ))}
-        </div>
+        {/* Carousel row: track + vertical indicator */}
+        <div className="flex items-stretch gap-4">
 
-        {/* Controles */}
-        <div className="mt-6 flex items-center justify-between sm:mt-8">
-          <div className="flex items-center gap-3">
-            <button
-              type="button" onClick={prev} aria-label={t.featured.prev}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full transition-opacity hover:opacity-60 sm:h-10 sm:w-10"
-              style={{ border: '1px solid var(--border)' }}
-            >
-              <Image src="/assets/icons/arrow-up-right.svg" alt="" width={16} height={16} aria-hidden="true" className="brightness-0 dark:brightness-100" style={{ transform: 'rotate(180deg)' }} />
-            </button>
-            <button
-              type="button" onClick={next} aria-label={t.featured.next}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full transition-opacity hover:opacity-60 sm:h-10 sm:w-10"
-              style={{ border: '1px solid var(--border)' }}
-            >
-              <Image src="/assets/icons/arrow-up-right.svg" alt="" width={16} height={16} aria-hidden="true" className="brightness-0 dark:brightness-100" />
-            </button>
+          {/* Track */}
+          <div
+            ref={trackRef}
+            className="hide-scrollbar featured-track flex flex-1 gap-4 overflow-x-scroll"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
+            {projects.map((project) => (
+              <div
+                key={project.id}
+                className="featured-card flex-none"
+                style={{ scrollSnapAlign: 'start' }}
+              >
+                <FeaturedProjectCard project={project} />
+              </div>
+            ))}
           </div>
-          <div className="flex items-center gap-1.5">
+
+          {/* Vertical page indicator */}
+          <div
+            className="hidden flex-col items-center justify-center gap-2 sm:flex"
+            style={{ minWidth: '12px' }}
+            aria-hidden="true"
+          >
             {projects.map((_, i) => (
               <button
-                key={i} type="button" onClick={() => goTo(i)}
-                aria-label={`${t.featured.dotLabel} ${i + 1}`}
-                className="h-1.5 rounded-full transition-all duration-300"
+                key={i}
+                type="button"
+                onClick={() => goTo(i)}
+                className="rounded-full transition-all duration-300"
                 style={{
-                  width: current === i ? '20px' : '6px',
-                  background: current === i ? 'var(--text-primary)' : 'var(--border)',
+                  width: '3px',
+                  height: current === i ? '28px' : '6px',
+                  background: current === i ? 'var(--text-primary)' : 'rgba(255,255,255,0.2)',
                 }}
               />
             ))}
           </div>
         </div>
 
+        {/* Controls */}
+        <div className="mt-6 flex items-center justify-between sm:mt-8">
+
+          {/* Arrow buttons */}
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => goTo(current - 1)}
+              disabled={!canPrev}
+              aria-label={t.featured.prev}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full transition-all duration-200 sm:h-11 sm:w-11"
+              style={{
+                border: '1px solid var(--border)',
+                color: 'var(--text-primary)',
+                opacity: canPrev ? 1 : 0.3,
+              }}
+            >
+              <ChevronLeft />
+            </button>
+            <button
+              type="button"
+              onClick={() => goTo(current + 1)}
+              disabled={!canNext}
+              aria-label={t.featured.next}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full transition-all duration-200 sm:h-11 sm:w-11"
+              style={{
+                border: '1px solid var(--border)',
+                color: 'var(--text-primary)',
+                opacity: canNext ? 1 : 0.3,
+              }}
+            >
+              <ChevronRight />
+            </button>
+          </div>
+
+          {/* Mobile dots */}
+          <div className="flex items-center gap-2 sm:hidden" aria-hidden="true">
+            {projects.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => goTo(i)}
+                className="rounded-full transition-all duration-300"
+                style={{
+                  height: '3px',
+                  width: current === i ? '20px' : '6px',
+                  background: current === i ? 'var(--text-primary)' : 'var(--border)',
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Counter desktop */}
+          <span
+            className="hidden font-sans text-xs sm:block"
+            style={{ color: 'var(--text-muted)' }}
+          >
+            {String(current + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          </span>
+        </div>
+
       </div>
+
+      {/* Responsive card widths */}
+      <style>{`
+        .featured-card { width: calc(85vw - 2rem); }
+        @media (min-width: 768px)  { .featured-card { width: calc(50% - 8px); } }
+        @media (min-width: 1024px) { .featured-card { width: calc(33.333% - 10.667px); } }
+      `}</style>
     </section>
   );
 }

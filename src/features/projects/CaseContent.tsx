@@ -244,6 +244,27 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
             </ol>
           </section>
 
+          {/* Case study screenshots */}
+          {project.case.imagens && project.case.imagens.length > 0 && (
+            <div className="mb-16 sm:mb-20 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {project.case.imagens.map((src, i) => (
+                <div
+                  key={i}
+                  className="relative w-full overflow-hidden rounded-xl"
+                  style={{ aspectRatio: '4/3', background: 'var(--card-bg)' }}
+                >
+                  <Image
+                    src={src}
+                    alt={`${project.titulo} — tela ${i + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Section 4 — CONCLUSÃO */}
           <section className="mb-16 sm:mb-20" aria-labelledby="s4-heading">
             <SectionHeader title={c.s4} index={4} />

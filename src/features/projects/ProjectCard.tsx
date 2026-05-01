@@ -56,7 +56,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {project.tecnologias.map((tech) => (
             <li
               key={tech}
-              className="rounded-full px-2.5 py-0.5 font-sans text-xs"
+              className="rounded-full px-2.5 py-0.5 font-sans text-xs font-medium tracking-wide uppercase"
               style={{
                 border: '1px solid var(--border)',
                 color: 'var(--text-muted)',

@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const CLIENT_EMAIL = 'talessaamayaraah15@gmail.com';
-const DEFAULT_SUBJECT = 'Olá Talissa';
-const DEFAULT_MESSAGE = 'Oi Talissa, eu vi seu portfólio e gostaria de entrar em contato';
+const DEFAULT_SUBJECT = 'Olá Talessa';
+const DEFAULT_MESSAGE = 'Oi Talessa, eu vi seu portfólio e gostaria de entrar em contato';
 
 const baseInputStyle: React.CSSProperties = {
   background: 'var(--card-bg)',

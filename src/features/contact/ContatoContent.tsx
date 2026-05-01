@@ -43,7 +43,7 @@ export function ContatoContent() {
                   {c.emailLabel}
                 </span>
                 <span className="font-sans text-sm sm:text-base" style={{ color: 'var(--text-secondary)' }}>
-                  talessa@email.com
+                  talessaamayaraah15@gmail.com
                 </span>
               </div>
               <div className="flex flex-col gap-0.5">

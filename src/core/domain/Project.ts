@@ -19,11 +19,17 @@ export interface CaseStudy {
   imagens?: string[];
 }
 
+export interface ProjectLocale {
+  titulo: string;
+  descricao: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
   titulo: string;
   descricao: string;
+  locales?: { en?: ProjectLocale; es?: ProjectLocale };
   tecnologias: string[];
   categoria?: string;
   imagemUrl?: string;

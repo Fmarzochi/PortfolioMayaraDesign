@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Project } from '@/core/domain/Project';
 import { useTilt } from '@/hooks/useTilt';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface FeaturedProjectCardProps {
   project: Project;
@@ -11,6 +12,10 @@ interface FeaturedProjectCardProps {
 
 export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
   const tilt = useTilt(8);
+  const { locale } = useLanguage();
+  const loc = locale !== 'pt' ? project.locales?.[locale as 'en' | 'es'] : undefined;
+  const titulo = loc?.titulo ?? project.titulo;
+  const descricao = loc?.descricao ?? project.descricao;
 
   return (
     <Link href={`/projetos/${project.slug}`} className="group block">
@@ -49,11 +54,11 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
             className="font-display text-lg font-medium transition-opacity group-hover:opacity-70"
             style={{ color: 'var(--text-primary)' }}
           >
-            {project.titulo}
+            {titulo}
           </h3>
-          {project.descricao && (
+          {descricao && (
             <p className="mt-1 font-sans text-xs leading-relaxed line-clamp-2" style={{ color: 'var(--text-muted)' }}>
-              {project.descricao}
+              {descricao}
             </p>
           )}
         </div>

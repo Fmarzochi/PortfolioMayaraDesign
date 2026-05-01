@@ -11,9 +11,12 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const href = `/projetos/${project.slug}`;
   const tilt = useTilt(6);
+  const loc = locale !== 'pt' ? project.locales?.[locale as 'en' | 'es'] : undefined;
+  const titulo = loc?.titulo ?? project.titulo;
+  const descricao = loc?.descricao ?? project.descricao;
 
   return (
     <article
@@ -56,14 +59,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
             className="font-display text-lg font-medium sm:text-xl"
             style={{ color: 'var(--text-primary)' }}
           >
-            {project.titulo}
+            {titulo}
           </h3>
         </Link>
         <p
           className="font-sans text-xs leading-relaxed sm:text-sm"
           style={{ color: 'var(--text-muted)' }}
         >
-          {project.descricao}
+          {descricao}
         </p>
 
         <ul className="mt-2 flex flex-wrap gap-2" aria-label="Ferramentas utilizadas">

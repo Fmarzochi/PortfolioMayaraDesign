@@ -7,10 +7,20 @@ const mockProjects: Project[] = [
     slug: 'catchup-tech',
     titulo: 'CatchUp Tech',
     descricao: 'Plataforma institucional focada em apresentar soluções digitais com clareza e estratégia. Estruturei a navegação e o visual para transmitir inovação e gerar conversão.',
+    locales: {
+      en: {
+        titulo: 'CatchUp Tech',
+        descricao: 'Institutional platform focused on presenting digital solutions with clarity and strategy. I structured navigation and visuals to convey innovation and drive conversion.',
+      },
+      es: {
+        titulo: 'CatchUp Tech',
+        descricao: 'Plataforma institucional enfocada en presentar soluciones digitales con claridad y estrategia. Estructuré la navegación y el visual para transmitir innovación y generar conversión.',
+      },
+    },
     tecnologias: ['UI/UX DESIGN', 'BRANDING', 'FIGMA'],
     categoria: 'website',
     imagemUrl: '/assets/images/projeto-catchup.png',
-    imagemObjectPosition: 'center 25%',
+    imagemObjectPosition: '45% top',
     destaque: true,
     cor: '#0a0a1a',
     cliente: 'catchup tech',
@@ -58,8 +68,18 @@ const mockProjects: Project[] = [
   {
     id: '2',
     slug: 'cardapio-recheia',
-    titulo: 'Cardápio Web Recheiaê',
+    titulo: 'Cardápio Inteligente e Sistema Administrativo Recheiaê',
     descricao: 'Sistema digital de cardápio com foco em usabilidade e agilidade no pedido. Projetei uma experiência intuitiva tanto para clientes quanto para gestão do negócio.',
+    locales: {
+      en: {
+        titulo: 'Smart Menu & Administrative System Recheiaê',
+        descricao: 'Digital menu system focused on usability and order agility. I designed an intuitive experience for both customers and business management.',
+      },
+      es: {
+        titulo: 'Menú Inteligente y Sistema Administrativo Recheiaê',
+        descricao: 'Sistema de menú digital centrado en usabilidad y agilidad en el pedido. Diseñé una experiencia intuitiva tanto para clientes como para la gestión del negocio.',
+      },
+    },
     tecnologias: ['UI/UX DESIGN', 'MOBILE', 'FIGMA'],
     categoria: 'app',
     imagemUrl: '/assets/images/projeto-recheiae.png',
@@ -118,6 +138,16 @@ const mockProjects: Project[] = [
     slug: 'resident-evil-requiem',
     titulo: 'Resident Evil Requiem',
     descricao: 'Releitura visual de um site com foco em imersão e narrativa. Trabalhei estética, hierarquia e interação para criar uma experiência envolvente.',
+    locales: {
+      en: {
+        titulo: 'Resident Evil Requiem',
+        descricao: 'Visual reinterpretation of a website focused on immersion and narrative. I worked on aesthetics, hierarchy, and interaction to create an engaging experience.',
+      },
+      es: {
+        titulo: 'Resident Evil Requiem',
+        descricao: 'Reinterpretación visual de un sitio web con foco en inmersión y narrativa. Trabajé estética, jerarquía e interacción para crear una experiencia envolvente.',
+      },
+    },
     tecnologias: ['FIGMA', 'WEBSITE'],
     categoria: 'website',
     imagemUrl: '/assets/images/projeto-resident-evil.png',
@@ -132,6 +162,16 @@ const mockProjects: Project[] = [
     slug: 'drakorys-game-ui',
     titulo: 'Drakorys Game UI',
     descricao: 'Interface de jogo com foco em imersão, narrativa e estética visual impactante. Desenvolvi uma experiência envolvente alinhando UI, atmosfera e usabilidade.',
+    locales: {
+      en: {
+        titulo: 'Drakorys Game UI',
+        descricao: 'Game interface focused on immersion, narrative, and impactful visual aesthetics. I developed an engaging experience aligning UI, atmosphere, and usability.',
+      },
+      es: {
+        titulo: 'Drakorys Game UI',
+        descricao: 'Interfaz de juego centrada en inmersión, narrativa y estética visual impactante. Desarrollé una experiencia envolvente alineando UI, atmósfera y usabilidad.',
+      },
+    },
     tecnologias: ['FIGMA', 'WEBSITE'],
     categoria: 'website',
     imagemUrl: '/assets/images/projeto-drakorys.png',
@@ -146,6 +186,16 @@ const mockProjects: Project[] = [
     slug: 'caffe-express',
     titulo: 'Caffe Express',
     descricao: 'Sistema de gestão e pedidos para cafeteria com foco em agilidade operacional. Estruturei fluxos simples e eficientes para melhorar a experiência do usuário.',
+    locales: {
+      en: {
+        titulo: 'Caffe Express',
+        descricao: 'Order and management system for a coffee shop focused on operational agility. I structured simple and efficient flows to improve the user experience.',
+      },
+      es: {
+        titulo: 'Caffe Express',
+        descricao: 'Sistema de gestión y pedidos para cafetería con foco en agilidad operacional. Estructuré flujos simples y eficientes para mejorar la experiencia del usuario.',
+      },
+    },
     tecnologias: ['APP MOBILE'],
     categoria: 'app',
     imagemUrl: '/assets/images/projeto-caffe-express.png',
@@ -159,6 +209,16 @@ const mockProjects: Project[] = [
     slug: 'essencial-perfumaria',
     titulo: 'Essencial Perfumaria',
     descricao: 'Website institucional com foco em elegância e posicionamento de marca. Criei um visual sofisticado com navegação clara e foco em conversão.',
+    locales: {
+      en: {
+        titulo: 'Essencial Perfumaria',
+        descricao: 'Institutional website focused on elegance and brand positioning. I created a sophisticated visual with clear navigation and a focus on conversion.',
+      },
+      es: {
+        titulo: 'Essencial Perfumaria',
+        descricao: 'Sitio web institucional centrado en elegancia y posicionamiento de marca. Creé un visual sofisticado con navegación clara y foco en conversión.',
+      },
+    },
     tecnologias: ['FIGMA', 'WEBSITE'],
     categoria: 'ecommerce',
     imagemUrl: '/assets/images/projeto-essencial.png',
@@ -172,6 +232,16 @@ const mockProjects: Project[] = [
     slug: 'planejamento-financeiro',
     titulo: 'Planejamento Financeiro',
     descricao: 'Dashboard financeiro pensado para controle e tomada de decisão. Projetei visualização de dados clara e intuitiva para facilitar o uso diário.',
+    locales: {
+      en: {
+        titulo: 'Financial Planning',
+        descricao: 'Financial dashboard designed for control and decision-making. I designed clear and intuitive data visualization to facilitate daily use.',
+      },
+      es: {
+        titulo: 'Planificación Financiera',
+        descricao: 'Dashboard financiero diseñado para el control y la toma de decisiones. Diseñé una visualización de datos clara e intuitiva para facilitar el uso diario.',
+      },
+    },
     tecnologias: ['FIGMA', 'DASHBOARD'],
     categoria: 'dashboard',
     imagemUrl: '/assets/images/projeto-planejamento.png',
@@ -185,6 +255,16 @@ const mockProjects: Project[] = [
     slug: 'neobank',
     titulo: 'NeoBank',
     descricao: 'Aplicativo bancário com foco em simplicidade e experiência do usuário. Desenvolvi uma interface moderna com fluxos otimizados e acessíveis.',
+    locales: {
+      en: {
+        titulo: 'NeoBank',
+        descricao: 'Banking app focused on simplicity and user experience. I developed a modern interface with optimized and accessible flows.',
+      },
+      es: {
+        titulo: 'NeoBank',
+        descricao: 'Aplicación bancaria centrada en simplicidad y experiencia del usuario. Desarrollé una interfaz moderna con flujos optimizados y accesibles.',
+      },
+    },
     tecnologias: ['APP'],
     categoria: 'app',
     imagemUrl: '/assets/images/projeto-neobank.png',
@@ -198,6 +278,16 @@ const mockProjects: Project[] = [
     slug: 'redesign-itau',
     titulo: 'Redesign Itaú — Parceria com a Ebac',
     descricao: 'Redesign focado em melhorar usabilidade e experiência do usuário. Apliquei boas práticas de UX para tornar a navegação mais fluida e eficiente.',
+    locales: {
+      en: {
+        titulo: 'Itaú Redesign — Partnership with Ebac',
+        descricao: 'Redesign focused on improving usability and user experience. I applied UX best practices to make navigation more fluid and efficient.',
+      },
+      es: {
+        titulo: 'Rediseño Itaú — Alianza con Ebac',
+        descricao: 'Rediseño enfocado en mejorar la usabilidad y la experiencia del usuario. Apliqué buenas prácticas de UX para hacer la navegación más fluida y eficiente.',
+      },
+    },
     tecnologias: ['APP', 'WEBSITE', 'SMARTWATCHES'],
     categoria: 'app',
     imagemUrl: '/assets/images/projeto-itau.png',

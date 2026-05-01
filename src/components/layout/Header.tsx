@@ -71,7 +71,7 @@ export function Header() {
               href="https://wa.me/553598074669"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-10 items-center justify-center rounded-full px-5 font-sans text-sm font-medium whitespace-nowrap transition-all duration-200 hover:opacity-80 active:scale-95"
+              className="btn-glass inline-flex h-10 items-center justify-center rounded-full px-5 font-sans text-sm font-medium whitespace-nowrap transition-all duration-200 hover:opacity-80 active:scale-95"
               style={{ border: '1px solid var(--border)', color: 'var(--accent)', background: 'var(--btn-bg)', minWidth: '195px' }}
             >
               {t.header.cta}
@@ -120,8 +120,8 @@ export function Header() {
             ))}
             <Link href="https://wa.me/553598074669" target="_blank" rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="mt-2 rounded-full px-3 py-2.5 text-center font-sans text-sm font-medium"
-              style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}>
+              className="btn-glass mt-2 rounded-full px-3 py-2.5 text-center font-sans text-sm font-medium"
+              style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--accent)' }}>
               {t.header.cta}
             </Link>
           </nav>

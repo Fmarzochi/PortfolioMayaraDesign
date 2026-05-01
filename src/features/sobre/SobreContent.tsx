@@ -69,7 +69,7 @@ export function SobreContent() {
               href="https://wa.me/553598074669"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex w-fit items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
+              className="btn-glass mt-2 inline-flex w-fit items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
               style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--accent)' }}
             >
               {s.ctaBtn}

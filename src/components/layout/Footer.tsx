@@ -28,7 +28,7 @@ export function Footer() {
       href="https://wa.me/553598074669"
       target="_blank"
       rel="noopener noreferrer"
-      className={className}
+      className={`btn-glass ${className}`}
       style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--accent)' }}
     >
       {t.footer.cta}

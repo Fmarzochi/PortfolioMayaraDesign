@@ -16,4 +16,8 @@ export class LocalProjectRepository implements IProjectRepository {
   async findFeatured(): Promise<Project[]> {
     return this.projects.filter((p) => p.destaque);
   }
+
+  async findBySlug(slug: string): Promise<Project | null> {
+    return this.projects.find((p) => p.slug === slug) ?? null;
+  }
 }

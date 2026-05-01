@@ -59,8 +59,12 @@ function ContentRow({ label, children }: { label: string; children: React.ReactN
 }
 
 export function CaseContent({ project, relatedProjects }: CaseContentProps) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const c = t.case;
+  const loc = locale !== 'pt' ? project.locales?.[locale as 'en' | 'es'] : undefined;
+  const caseData = (locale !== 'pt' && project.caseLocales?.[locale as 'en' | 'es']) || project.case;
+  const meuPapel = loc?.meuPapel ?? project.meuPapel;
+  const servicos = loc?.servicos ?? project.servicos;
 
   return (
     <div
@@ -132,7 +136,7 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
               </p>
             </div>
           )}
-          {project.meuPapel && (
+          {meuPapel && (
             <div
               className="py-5 sm:px-6 sm:border-l sm:border-r"
               style={{
@@ -144,11 +148,11 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
                 {c.meuPapel}
               </p>
               <p className="font-display text-sm font-medium uppercase" style={{ color: 'var(--text-primary)' }}>
-                {project.meuPapel}
+                {meuPapel}
               </p>
             </div>
           )}
-          {project.servicos && (
+          {servicos && (
             <div
               className="py-5 sm:pl-6"
               style={{ borderTop: '1px solid rgba(247,247,247,0.08)' }}
@@ -157,7 +161,7 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
                 {c.servicos}
               </p>
               <p className="font-display text-sm font-medium uppercase" style={{ color: 'var(--text-primary)' }}>
-                {project.servicos}
+                {servicos}
               </p>
             </div>
           )}
@@ -183,19 +187,19 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
         </div>
       )}
 
-      {project.case && (
+      {caseData && (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10">
           {/* Section 1 — SOBRE O PROBLEMA */}
           <section className="mb-16 sm:mb-20" aria-labelledby="s1-heading">
             <SectionHeader title={c.s1} index={1} />
             <div id="s1-heading" className="sr-only">{c.s1}</div>
             <ContentRow label={c.s1User}>
-              {project.case.problema.usuario.split('\n\n').map((para, i) => (
+              {caseData.problema.usuario.split('\n\n').map((para, i) => (
                 <p key={i} className={i > 0 ? 'mt-4' : ''}>{para}</p>
               ))}
             </ContentRow>
             <ContentRow label={c.s1Business}>
-              {project.case.problema.negocio.split('\n\n').map((para, i) => (
+              {caseData.problema.negocio.split('\n\n').map((para, i) => (
                 <p key={i} className={i > 0 ? 'mt-4' : ''}>{para}</p>
               ))}
             </ContentRow>
@@ -206,7 +210,7 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
             <SectionHeader title={c.s2} index={2} />
             <div id="s2-heading" className="sr-only">{c.s2}</div>
             <ContentRow label={c.s2Brand}>
-              {project.case.solucao.estrategiaMarca.split('\n\n').map((para, i) => (
+              {caseData.solucao.estrategiaMarca.split('\n\n').map((para, i) => (
                 <p key={i} className={i > 0 ? 'mt-4' : ''}>{para}</p>
               ))}
             </ContentRow>
@@ -216,16 +220,16 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
           <section className="mb-16 sm:mb-20" aria-labelledby="s3-heading">
             <SectionHeader title={c.s3} index={3} />
             <div id="s3-heading" className="sr-only">{c.s3}</div>
-            {project.case.processo.descricao && (
+            {caseData.processo.descricao && (
               <p
                 className="mb-8 font-sans text-sm leading-relaxed sm:text-base max-w-2xl"
                 style={{ color: 'var(--text-muted)', lineHeight: '1.75' }}
               >
-                {project.case.processo.descricao}
+                {caseData.processo.descricao}
               </p>
             )}
             <ol className="space-y-0">
-              {project.case.processo.etapas.map((etapa, i) => (
+              {caseData.processo.etapas.map((etapa, i) => (
                 <li
                   key={i}
                   className="grid grid-cols-[3rem_1fr] sm:grid-cols-[5rem_1fr] items-start gap-4 py-5"
@@ -249,12 +253,12 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
           </section>
 
           {/* Case study screenshots */}
-          {project.case.imagens && project.case.imagens.length > 0 && (
+          {caseData.imagens && caseData.imagens.length > 0 && (
             <div className="mb-16 sm:mb-20 flex flex-col gap-4">
               {/* First image (overview) — full width */}
               <div className="w-full overflow-hidden rounded-2xl" style={{ background: 'var(--card-bg)' }}>
                 <Image
-                  src={project.case.imagens[0]}
+                  src={caseData.imagens[0]}
                   alt={`${project.titulo} — visão geral`}
                   width={1400}
                   height={900}
@@ -263,9 +267,9 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
                 />
               </div>
               {/* Remaining images — 2-col grid, natural ratio */}
-              {project.case.imagens.length > 1 && (
+              {caseData.imagens.length > 1 && (
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {project.case.imagens.slice(1).map((src, i) => (
+                  {caseData.imagens.slice(1).map((src, i) => (
                     <div key={i} className="w-full overflow-hidden rounded-2xl" style={{ background: 'var(--card-bg)' }}>
                       <Image
                         src={src}
@@ -287,18 +291,18 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
             <SectionHeader title={c.s4} index={4} />
             <div id="s4-heading" className="sr-only">{c.s4}</div>
             <ContentRow label={c.s4Insight}>
-              {project.case.conclusao.insight.split('\n\n').map((para, i) => (
+              {caseData.conclusao.insight.split('\n\n').map((para, i) => (
                 <p key={i} className={i > 0 ? 'mt-4' : ''}>{para}</p>
               ))}
             </ContentRow>
-            {project.case.conclusao.designInterface && (
+            {caseData.conclusao.designInterface && (
               <ContentRow label={c.s4Interface}>
-                {project.case.conclusao.designInterface.split('\n\n').map((para, i) => (
+                {caseData.conclusao.designInterface.split('\n\n').map((para, i) => (
                   <p key={i} className={i > 0 ? 'mt-4' : ''}>{para}</p>
                 ))}
               </ContentRow>
             )}
-            {project.case.conclusao.learnings && project.case.conclusao.learnings.length > 0 && (
+            {caseData.conclusao.learnings && caseData.conclusao.learnings.length > 0 && (
               <div
                 className="py-6"
                 style={{ borderTop: '1px solid rgba(247,247,247,0.08)' }}
@@ -312,7 +316,7 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
                   </span>
                   <div>
                     <ul className="space-y-3 mb-6">
-                      {project.case.conclusao.learnings.map((item, i) => (
+                      {caseData.conclusao.learnings.map((item, i) => (
                         <li
                           key={i}
                           className="flex items-start gap-3 font-sans text-sm sm:text-base"

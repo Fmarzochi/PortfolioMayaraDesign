@@ -72,7 +72,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-10 items-center justify-center rounded-full px-5 font-sans text-sm font-medium whitespace-nowrap transition-all duration-200 hover:opacity-80 active:scale-95"
-              style={{ border: '1px solid var(--border)', color: 'var(--text-primary)', background: 'rgba(255,255,255,0.07)', minWidth: '195px' }}
+              style={{ border: '1px solid var(--border)', color: 'var(--accent)', background: 'var(--btn-bg)', minWidth: '195px' }}
             >
               {t.header.cta}
             </Link>

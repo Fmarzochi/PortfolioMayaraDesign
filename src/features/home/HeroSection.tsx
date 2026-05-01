@@ -79,7 +79,7 @@ export function HeroSection() {
               ref={ctaMagnetic.ref as React.RefObject<HTMLAnchorElement>}
               href="/projetos"
               className="inline-flex items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
-              style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--text-primary)', ...ctaMagnetic.style }}
+              style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--accent)', ...ctaMagnetic.style }}
               onMouseMove={ctaMagnetic.onMouseMove as React.MouseEventHandler<HTMLAnchorElement>}
               onMouseLeave={ctaMagnetic.onMouseLeave}
             >

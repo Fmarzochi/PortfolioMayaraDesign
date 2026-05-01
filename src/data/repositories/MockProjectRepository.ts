@@ -11,10 +11,90 @@ const mockProjects: Project[] = [
       en: {
         titulo: 'CatchUp Tech',
         descricao: 'Institutional platform focused on presenting digital solutions with clarity and strategy. I structured navigation and visuals to convey innovation and drive conversion.',
+        meuPapel: 'ui/ux designer',
+        servicos: 'ux design, ui design, branding & handoff',
       },
       es: {
         titulo: 'CatchUp Tech',
         descricao: 'Plataforma institucional enfocada en presentar soluciones digitales con claridad y estrategia. Estructuré la navegación y el visual para transmitir innovación y generar conversión.',
+        meuPapel: 'ui/ux designer',
+        servicos: 'ux design, ui design, branding y handoff',
+      },
+    },
+    caseLocales: {
+      en: {
+        problema: {
+          usuario: 'Users who access institutional websites often find unclear information, too much content, or difficulty quickly understanding what the company offers.\n\nThis compromises the experience and reduces interest in continuing to browse.',
+          negocio: 'The absence of a well-defined visual identity and a structured landing page can hinder brand positioning, reduce credibility, and negatively impact lead generation.',
+        },
+        solucao: {
+          estrategiaMarca: 'The brand strategy was designed to convey innovation, technology, and trust.\n\nVisual elements were defined to create a strong, consistent identity, using colors and typography that reinforce the company\'s digital positioning.\n\nThe communication aims to be direct, modern, and accessible.',
+        },
+        processo: {
+          descricao: 'The process involved building the brand identity, defining the landing page structure, and developing the interface, ensuring a consistent and strategic experience.',
+          etapas: [
+            'UX Research / UX Strategy',
+            'Synthesis and problem definition',
+            'Ideation (UX Design / Product Strategy)',
+            'Concept and Experience Definition',
+            'Solution Structure (Information Architecture)',
+            'Interface Design (UI Design)',
+            'Prototyping and Validation',
+            'Developer Handoff',
+          ],
+        },
+        conclusao: {
+          insight: 'The project resulted in a stronger digital presence, aligning visual identity and user experience.\n\nThe developed solution contributes to clearer communication, greater credibility, and better user direction within the platform.',
+          designInterface: 'The landing page design was structured with a focus on organization, clarity, and user direction.\n\nThe interface was built to guide navigation naturally, highlighting important information and facilitating understanding of the services offered.',
+          learnings: [
+            'Clear communication increases engagement',
+            'A well-defined structure facilitates navigation',
+            'Visual consistency strengthens the brand',
+            'Strategic design directly impacts user perception',
+          ],
+        },
+        imagens: [
+          '/assets/case-studies/catchup/screen-2.png',
+          '/assets/case-studies/catchup/screen-3.png',
+          '/assets/case-studies/catchup/screen-4.png',
+        ],
+      },
+      es: {
+        problema: {
+          usuario: 'Los usuarios que acceden a sitios web institucionales a menudo encuentran información poco clara, exceso de contenido o dificultad para entender rápidamente qué ofrece la empresa.\n\nEsto compromete la experiencia y reduce el interés en continuar navegando.',
+          negocio: 'La ausencia de una identidad visual bien definida y una landing page estructurada puede dificultar el posicionamiento de la marca, reducir la credibilidad e impactar negativamente en la generación de leads.',
+        },
+        solucao: {
+          estrategiaMarca: 'La estrategia de marca fue pensada para transmitir innovación, tecnología y confianza.\n\nSe definieron elementos visuales para crear una identidad fuerte y consistente, utilizando colores y tipografía que refuerzan el posicionamiento digital de la empresa.\n\nLa comunicación busca ser directa, moderna y accesible.',
+        },
+        processo: {
+          descricao: 'El proceso involucró la construcción de la identidad de marca, la definición de la estructura de la landing page y el desarrollo de la interfaz, garantizando una experiencia consistente y estratégica.',
+          etapas: [
+            'UX Research / UX Strategy',
+            'Síntesis y definición del problema',
+            'Ideación (UX Design / Product Strategy)',
+            'Definición del Concepto y Experiencia',
+            'Estructura de la Solución (Arquitectura de Información)',
+            'Diseño de la interfaz (UI Design)',
+            'Prototipado y Validación',
+            'Handoff para Desarrolladores',
+          ],
+        },
+        conclusao: {
+          insight: 'El proyecto resultó en una presencia digital más sólida, alineando identidad visual y experiencia del usuario.\n\nLa solución desarrollada contribuye a una comunicación más clara, mayor credibilidad y mejor dirección del usuario dentro de la plataforma.',
+          designInterface: 'El diseño de la landing page fue estructurado con foco en organización, claridad y dirección del usuario.\n\nLa interfaz fue construida para guiar la navegación de forma natural, destacando información importante y facilitando la comprensión de los servicios ofrecidos.',
+          learnings: [
+            'La claridad en la comunicación aumenta el engagement',
+            'Una estructura bien definida facilita la navegación',
+            'La consistencia visual fortalece la marca',
+            'El diseño estratégico impacta directamente en la percepción del usuario',
+          ],
+        },
+        imagens: [
+          '/assets/case-studies/catchup/screen-2.png',
+          '/assets/case-studies/catchup/screen-3.png',
+          '/assets/case-studies/catchup/screen-4.png',
+        ],
       },
     },
     tecnologias: ['UI/UX DESIGN', 'BRANDING', 'FIGMA'],
@@ -74,10 +154,102 @@ const mockProjects: Project[] = [
       en: {
         titulo: 'Smart Menu & Administrative System Recheiaê',
         descricao: 'Digital menu system focused on usability and order agility. I designed an intuitive experience for both customers and business management.',
+        meuPapel: 'ui/ux designer',
+        servicos: 'ux design, ui design, branding & responsiveness',
       },
       es: {
         titulo: 'Menú Inteligente y Sistema Administrativo Recheiaê',
         descricao: 'Sistema de menú digital centrado en usabilidad y agilidad en el pedido. Diseñé una experiencia intuitiva tanto para clientes como para la gestión del negocio.',
+        meuPapel: 'ui/ux designer',
+        servicos: 'ux design, ui design, branding y responsividad',
+      },
+    },
+    caseLocales: {
+      en: {
+        problema: {
+          usuario: 'Users face difficulties navigating poorly organized menus, with too much information or lack of clarity in item presentation.\n\nThis makes the selection process longer and often frustrating, directly impacting the experience.',
+          negocio: 'The lack of a well-structured menu can negatively impact sales, making customer decision-making harder and reducing the conversion rate.\n\nFurthermore, an unintuitive experience can lead to order abandonment and lost sales opportunities.',
+        },
+        solucao: {
+          estrategiaMarca: 'The brand strategy was aimed at conveying a modern, accessible, and reliable experience, aligned with users\' digital behavior.\n\nVisual elements were defined to reinforce clarity and proximity, using strategic colors to highlight important actions and encourage interaction.\n\nThe visual communication was designed to enhance products and make the process more engaging and intuitive.',
+        },
+        processo: {
+          descricao: 'The process was structured to understand user behavior, identify opportunities, and build an efficient and intuitive solution.\n\nFrom this, experience and interface strategies were defined, transforming the menu into a simple, organized, and conversion-oriented journey.',
+          etapas: [
+            'Research and understanding',
+            'Brand positioning',
+            'Experience structuring',
+            'Visual identity creation',
+            'Information architecture',
+            'Interface design',
+            'Prototyping and Validation',
+            'Developer Handoff',
+          ],
+        },
+        conclusao: {
+          insight: 'The project resulted in a more intuitive, organized, and efficient digital menu, providing a smoother user experience.\n\nBy aligning user needs with business objectives, it was possible to create a solution that not only improves navigation but also enhances decision-making.\n\nThis project reinforces the importance of strategic design, capable of transforming experiences and generating real value.',
+          designInterface: 'The interface design was developed with a focus on visual hierarchy, information organization, and ease of use.\n\nElements were structured to guide the user naturally during navigation, with emphasis on categories, products, and main actions.',
+          designInterfacePrioridades: [
+            'Clarity in item presentation',
+            'Ease of interaction',
+            'Friction reduction in the journey',
+            'Visual consistency between elements',
+          ],
+          learnings: [
+            'Simple interfaces facilitate quick decisions',
+            'Information organization directly impacts the experience',
+            'Visual elements influence user behavior',
+            'Reducing friction significantly improves the journey',
+          ],
+        },
+        imagens: [
+          '/assets/case-studies/cardapio-web/screen-2.png',
+          '/assets/case-studies/cardapio-web/screen-3.png',
+          '/assets/case-studies/cardapio-web/screen-4.png',
+        ],
+      },
+      es: {
+        problema: {
+          usuario: 'Los usuarios enfrentan dificultades al navegar por menús poco organizados, con exceso de información o falta de claridad en la presentación de los ítems.\n\nEsto hace que el proceso de selección sea más lento y, muchas veces, frustrante, impactando directamente en la experiencia.',
+          negocio: 'La falta de un menú bien estructurado puede impactar negativamente en las ventas, dificultando la toma de decisiones del cliente y reduciendo la tasa de conversión.\n\nAdemás, una experiencia poco intuitiva puede generar abandono del pedido y pérdida de oportunidades de venta.',
+        },
+        solucao: {
+          estrategiaMarca: 'La estrategia de marca fue orientada a transmitir una experiencia moderna, accesible y confiable, alineada con el comportamiento digital de los usuarios.\n\nSe definieron elementos visuales que refuerzan claridad y proximidad, utilizando colores estratégicos para destacar acciones importantes e incentivar la interacción.\n\nLa comunicación visual fue pensada para valorizar los productos y hacer el proceso más envolvente e intuitivo.',
+        },
+        processo: {
+          descricao: 'El proceso fue estructurado para entender el comportamiento del usuario, identificar oportunidades y construir una solución eficiente e intuitiva.\n\nA partir de eso, se definieron estrategias de experiencia e interfaz, transformando el menú en un recorrido simple, organizado y orientado a la conversión.',
+          etapas: [
+            'Investigación y comprensión',
+            'Posicionamiento de marca',
+            'Estructuración de la experiencia',
+            'Creación de identidad visual',
+            'Arquitectura de la información',
+            'Diseño de interfaz',
+            'Prototipado y Validación',
+            'Handoff para Desarrolladores',
+          ],
+        },
+        conclusao: {
+          insight: 'El proyecto resultó en un menú digital más intuitivo, organizado y eficiente, proporcionando una experiencia más fluida para el usuario.\n\nAl alinear las necesidades del usuario con los objetivos del negocio, fue posible crear una solución que no solo mejora la navegación, sino que también potencia la toma de decisiones.\n\nEste proyecto refuerza la importancia de un diseño estratégico, capaz de transformar experiencias y generar valor real.',
+          designInterface: 'El diseño de la interfaz fue desarrollado con foco en jerarquía visual, organización de la información y facilidad de uso.\n\nLos elementos fueron estructurados para guiar al usuario de forma natural durante la navegación, con énfasis en categorías, productos y acciones principales.',
+          designInterfacePrioridades: [
+            'Claridad en la presentación de los ítems',
+            'Facilidad de interacción',
+            'Reducción de fricción en el recorrido',
+            'Consistencia visual entre los elementos',
+          ],
+          learnings: [
+            'Las interfaces simples facilitan decisiones rápidas',
+            'La organización de la información impacta directamente en la experiencia',
+            'Los elementos visuales influyen en el comportamiento del usuario',
+            'Reducir la fricción mejora significativamente el recorrido',
+          ],
+        },
+        imagens: [
+          '/assets/case-studies/cardapio-web/screen-2.png',
+          '/assets/case-studies/cardapio-web/screen-3.png',
+          '/assets/case-studies/cardapio-web/screen-4.png',
+        ],
       },
     },
     tecnologias: ['UI/UX DESIGN', 'MOBILE', 'FIGMA'],
@@ -291,6 +463,7 @@ const mockProjects: Project[] = [
     tecnologias: ['APP', 'WEBSITE', 'SMARTWATCHES'],
     categoria: 'app',
     imagemUrl: '/assets/images/projeto-itau.png',
+    imagemObjectPosition: '50% 60%',
     destaque: false,
     cor: '#ff6500',
     meuPapel: 'ui/ux designer',

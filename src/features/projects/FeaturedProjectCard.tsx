@@ -51,7 +51,7 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
 
         <div className="px-1 pt-4 pb-2">
           <h3
-            className="font-display text-lg font-medium transition-opacity group-hover:opacity-70"
+            className="font-display text-lg font-medium transition-opacity group-hover:opacity-70 line-clamp-1"
             style={{ color: 'var(--text-primary)' }}
           >
             {titulo}

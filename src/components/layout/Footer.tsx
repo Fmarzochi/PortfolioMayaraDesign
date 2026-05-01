@@ -29,11 +29,11 @@ export function Footer() {
       target="_blank"
       rel="noopener noreferrer"
       className={className}
-      style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+      style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--accent)' }}
     >
       {t.footer.cta}
       <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: 'var(--btn-icon-bg)' }}>
-        <Image src="/assets/icons/arrow-up-right.svg" alt="" width={18} height={18} aria-hidden="true" className="brightness-0 dark:brightness-[10]" />
+        <Image src="/assets/icons/arrow-up-right.svg" alt="" width={18} height={18} aria-hidden="true" className="brightness-[10]" />
       </span>
     </Link>
   );

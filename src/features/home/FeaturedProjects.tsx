@@ -103,7 +103,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
             <Link
               href="/projetos"
               className="inline-flex w-fit items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
-              style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+              style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--accent)' }}
             >
               {t.featured.ctaBtn}
               <span
@@ -116,7 +116,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                   width={17}
                   height={17}
                   aria-hidden="true"
-                  className="brightness-0 dark:brightness-[10]"
+                  className="brightness-[10]"
                 />
               </span>
             </Link>

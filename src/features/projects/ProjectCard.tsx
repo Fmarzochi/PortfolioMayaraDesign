@@ -56,14 +56,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className="flex flex-1 flex-col gap-3 p-4 sm:p-5 lg:p-6">
         <Link href={href} className="hover:opacity-70 transition-opacity">
           <h3
-            className="font-display text-lg font-medium sm:text-xl"
+            className="font-display text-lg font-medium sm:text-xl line-clamp-1"
             style={{ color: 'var(--text-primary)' }}
           >
             {titulo}
           </h3>
         </Link>
         <p
-          className="font-sans text-xs leading-relaxed sm:text-sm"
+          className="font-sans text-xs leading-relaxed sm:text-sm line-clamp-2"
           style={{ color: 'var(--text-muted)' }}
         >
           {descricao}

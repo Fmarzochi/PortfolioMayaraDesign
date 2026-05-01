@@ -22,6 +22,8 @@ export interface CaseStudy {
 export interface ProjectLocale {
   titulo: string;
   descricao: string;
+  meuPapel?: string;
+  servicos?: string;
 }
 
 export interface Project {
@@ -30,6 +32,7 @@ export interface Project {
   titulo: string;
   descricao: string;
   locales?: { en?: ProjectLocale; es?: ProjectLocale };
+  caseLocales?: { en?: CaseStudy; es?: CaseStudy };
   tecnologias: string[];
   categoria?: string;
   imagemUrl?: string;

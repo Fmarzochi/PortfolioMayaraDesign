@@ -3,15 +3,25 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Project } from '@/core/domain/Project';
+import { useTilt } from '@/hooks/useTilt';
 
 interface FeaturedProjectCardProps {
   project: Project;
 }
 
 export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
+  const tilt = useTilt(8);
+
   return (
     <Link href={`/projetos/${project.slug}`} className="group block">
-      <article className="flex flex-col overflow-hidden rounded-2xl">
+      <article
+        ref={tilt.ref as React.RefObject<HTMLElement>}
+        className="flex flex-col overflow-hidden rounded-2xl"
+        style={{ position: 'relative', ...tilt.style }}
+        onMouseMove={tilt.onMouseMove as React.MouseEventHandler<HTMLElement>}
+        onMouseLeave={tilt.onMouseLeave}
+      >
+        <div style={tilt.glareStyle} />
         <div
           className="relative w-full overflow-hidden rounded-2xl"
           style={{ aspectRatio: '4/5', background: 'var(--card-bg)' }}
@@ -22,6 +32,7 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
               alt={project.titulo}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
+              style={{ objectPosition: project.imagemObjectPosition ?? 'center center' }}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (

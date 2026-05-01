@@ -29,11 +29,11 @@ export function Footer() {
       target="_blank"
       rel="noopener noreferrer"
       className={className}
-      style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+      style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
     >
       {t.footer.cta}
-      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: 'var(--accent)' }}>
-        <Image src="/assets/icons/arrow-up-right.svg" alt="" width={13} height={13} aria-hidden="true" className="brightness-[10]" />
+      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: 'var(--btn-icon-bg)' }}>
+        <Image src="/assets/icons/arrow-up-right.svg" alt="" width={18} height={18} aria-hidden="true" className="brightness-0 dark:brightness-[10]" />
       </span>
     </Link>
   );
@@ -67,7 +67,7 @@ export function Footer() {
           {/* ── MOBILE layout (< lg) ── */}
           <div className="flex flex-col items-center gap-6 lg:hidden">
             <LocaleDropdown variant="ghost" direction="down" />
-            {ctaLink('inline-flex w-full items-center justify-between rounded-full px-5 py-3 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80')}
+            {ctaLink('inline-flex w-full items-center justify-between rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80')}
             <nav aria-label="Links do rodapé" className="flex flex-col items-center gap-4">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="font-sans text-lg transition-opacity hover:opacity-60" style={{ color: 'var(--text-secondary)' }}>
@@ -96,7 +96,7 @@ export function Footer() {
           <div className="hidden lg:flex lg:items-center lg:justify-between">
             <div className="flex flex-col gap-3">
               <LocaleDropdown variant="ghost" direction="up" />
-              {ctaLink('inline-flex w-fit items-center gap-2.5 rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80')}
+              {ctaLink('inline-flex w-fit items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80')}
             </div>
             <nav aria-label="Links do rodapé" className="flex flex-wrap gap-6">
               {navLinks.map((link) => (

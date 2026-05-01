@@ -69,15 +69,15 @@ export function SobreContent() {
               href="https://wa.me/553598074669"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-flex w-fit items-center gap-2.5 rounded-full px-5 py-3 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
-              style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+              className="mt-2 inline-flex w-fit items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
+              style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
             >
               {s.ctaBtn}
               <span
-                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
-                style={{ background: 'var(--accent)' }}
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                style={{ background: 'var(--btn-icon-bg)' }}
               >
-                <Image src="/assets/icons/arrow-up-right.svg" alt="" width={12} height={12} aria-hidden="true" className="brightness-[10]" />
+                <Image src="/assets/icons/arrow-up-right.svg" alt="" width={17} height={17} aria-hidden="true" className="brightness-0 dark:brightness-[10]" />
               </span>
             </Link>
           </div>

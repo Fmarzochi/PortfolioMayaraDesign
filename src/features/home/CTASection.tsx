@@ -94,7 +94,7 @@ export function CTASection() {
             href="https://wa.me/553598074669"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex items-center gap-3 rounded-full px-6 py-3 font-sans text-sm font-medium transition-all duration-200 hover:opacity-90"
+            className="mt-2 inline-flex items-center gap-3 rounded-full pl-6 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-90"
             style={{
               background: 'rgba(255,255,255,0.08)',
               border: '1px solid rgba(255,255,255,0.25)',
@@ -104,14 +104,14 @@ export function CTASection() {
           >
             {t.cta.btn}
             <span
-              className="inline-flex h-7 w-7 items-center justify-center rounded-full"
-              style={{ background: 'var(--accent)' }}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full"
+              style={{ background: 'rgba(255,255,255,0.20)' }}
             >
               <Image
                 src="/assets/icons/arrow-up-right.svg"
                 alt=""
-                width={13}
-                height={13}
+                width={17}
+                height={17}
                 aria-hidden="true"
                 className="brightness-[10]"
               />

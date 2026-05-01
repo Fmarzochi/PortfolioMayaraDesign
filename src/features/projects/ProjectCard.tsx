@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Project } from '@/core/domain/Project';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useTilt } from '@/hooks/useTilt';
 
 interface ProjectCardProps {
   project: Project;
@@ -12,15 +13,22 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   const { t } = useLanguage();
   const href = `/projetos/${project.slug}`;
+  const tilt = useTilt(6);
 
   return (
     <article
+      ref={tilt.ref as React.RefObject<HTMLElement>}
       className="group flex flex-col overflow-hidden rounded-xl transition-all duration-200"
       style={{
         background: 'var(--card-bg)',
         border: '1px solid var(--card-border)',
+        position: 'relative',
+        ...tilt.style,
       }}
+      onMouseMove={tilt.onMouseMove as React.MouseEventHandler<HTMLElement>}
+      onMouseLeave={tilt.onMouseLeave}
     >
+      <div style={tilt.glareStyle} />
       {/* Thumbnail */}
       <Link href={href} className="block">
         <div className="aspect-video w-full overflow-hidden relative" style={{ background: 'var(--glow)' }}>
@@ -30,6 +38,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               alt={project.titulo}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
+              style={{ objectPosition: project.imagemObjectPosition ?? 'center center' }}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (

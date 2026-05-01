@@ -22,6 +22,8 @@ function ChevronRight() {
 import { Project } from '@/core/domain/Project';
 import { FeaturedProjectCard } from '@/features/projects/FeaturedProjectCard';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { TextReveal } from '@/components/ui/TextReveal';
+import { useMagnetic } from '@/hooks/useMagnetic';
 
 interface FeaturedProjectsProps {
   projects: Project[];
@@ -29,6 +31,8 @@ interface FeaturedProjectsProps {
 
 export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
   const { t } = useLanguage();
+  const prevMagnetic = useMagnetic(12);
+  const nextMagnetic = useMagnetic(12);
   const [current, setCurrent] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const total = projects.length;
@@ -80,13 +84,14 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
             >
               {t.featured.badge}
             </span>
-            <h2
+            <TextReveal
+              as="h2"
               id="featured-heading"
               className="fluid-h2 font-display font-semibold"
               style={{ color: 'var(--text-primary)' }}
             >
               {t.featured.heading}
-            </h2>
+            </TextReveal>
           </div>
           <div className="flex flex-col gap-3 md:items-end md:text-right">
             <p
@@ -97,21 +102,21 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
             </p>
             <Link
               href="/projetos"
-              className="inline-flex w-fit items-center gap-2.5 rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
-              style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+              className="inline-flex w-fit items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
+              style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
             >
               {t.featured.ctaBtn}
               <span
-                className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-                style={{ background: 'var(--accent)' }}
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                style={{ background: 'var(--btn-icon-bg)' }}
               >
                 <Image
                   src="/assets/icons/arrow-up-right.svg"
                   alt=""
-                  width={11}
-                  height={11}
+                  width={17}
+                  height={17}
                   aria-hidden="true"
-                  className="brightness-[10]"
+                  className="brightness-0 dark:brightness-[10]"
                 />
               </span>
             </Link>
@@ -166,6 +171,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           {/* Arrow buttons */}
           <div className="flex items-center gap-3">
             <button
+              ref={prevMagnetic.ref as React.RefObject<HTMLButtonElement>}
               type="button"
               onClick={() => goTo(current - 1)}
               disabled={!canPrev}
@@ -175,11 +181,15 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                 border: '1px solid var(--border)',
                 color: 'var(--text-primary)',
                 opacity: canPrev ? 1 : 0.3,
+                ...prevMagnetic.style,
               }}
+              onMouseMove={prevMagnetic.onMouseMove as React.MouseEventHandler<HTMLButtonElement>}
+              onMouseLeave={prevMagnetic.onMouseLeave}
             >
               <ChevronLeft />
             </button>
             <button
+              ref={nextMagnetic.ref as React.RefObject<HTMLButtonElement>}
               type="button"
               onClick={() => goTo(current + 1)}
               disabled={!canNext}
@@ -189,7 +199,10 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                 border: '1px solid var(--border)',
                 color: 'var(--text-primary)',
                 opacity: canNext ? 1 : 0.3,
+                ...nextMagnetic.style,
               }}
+              onMouseMove={nextMagnetic.onMouseMove as React.MouseEventHandler<HTMLButtonElement>}
+              onMouseLeave={nextMagnetic.onMouseLeave}
             >
               <ChevronRight />
             </button>

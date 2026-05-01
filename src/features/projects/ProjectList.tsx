@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Project } from '@/core/domain/Project';
 import { ProjectCard } from './ProjectCard';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { StaggerReveal } from '@/components/ui/StaggerReveal';
 
 interface ProjectListProps {
   projects: Project[];
@@ -73,11 +74,11 @@ export function ProjectList({ projects }: ProjectListProps) {
           <p className="font-sans text-sm" style={{ color: 'var(--text-muted)' }}>{t.projects.noProjects}</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerReveal className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
-        </div>
+        </StaggerReveal>
       )}
     </section>
   );

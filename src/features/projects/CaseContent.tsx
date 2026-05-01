@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { Project } from '@/core/domain/Project';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { FeaturedProjectCard } from './FeaturedProjectCard';
+import { TextReveal } from '@/components/ui/TextReveal';
+import { TextScramble } from '@/components/ui/TextScramble';
 
 interface CaseContentProps {
   project: Project;
@@ -15,12 +17,13 @@ function SectionHeader({ title, index }: { title: string; index: number }) {
   return (
     <div className="mb-8 sm:mb-10">
       <div className="flex items-baseline justify-between">
-        <span
+        <TextScramble
+          as="span"
           className="font-display text-xs font-semibold uppercase tracking-[2px] sm:text-sm"
           style={{ color: 'var(--text-primary)' }}
         >
           {title}
-        </span>
+        </TextScramble>
         <span
           className="font-sans text-xs sm:text-sm"
           style={{ color: 'var(--text-muted)' }}
@@ -87,12 +90,13 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
         </p>
 
         {/* Title */}
-        <h1
+        <TextReveal
+          as="h1"
           className="font-display text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl xl:text-7xl mb-8 sm:mb-10"
           style={{ color: 'var(--text-primary)' }}
         >
           {project.titulo}
-        </h1>
+        </TextReveal>
 
         {/* Tags */}
         {project.tecnologias && project.tecnologias.length > 0 && (
@@ -246,22 +250,35 @@ export function CaseContent({ project, relatedProjects }: CaseContentProps) {
 
           {/* Case study screenshots */}
           {project.case.imagens && project.case.imagens.length > 0 && (
-            <div className="mb-16 sm:mb-20 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {project.case.imagens.map((src, i) => (
-                <div
-                  key={i}
-                  className="relative w-full overflow-hidden rounded-xl"
-                  style={{ aspectRatio: '4/3', background: 'var(--card-bg)' }}
-                >
-                  <Image
-                    src={src}
-                    alt={`${project.titulo} — tela ${i + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
+            <div className="mb-16 sm:mb-20 flex flex-col gap-4">
+              {/* First image (overview) — full width */}
+              <div className="w-full overflow-hidden rounded-2xl" style={{ background: 'var(--card-bg)' }}>
+                <Image
+                  src={project.case.imagens[0]}
+                  alt={`${project.titulo} — visão geral`}
+                  width={1400}
+                  height={900}
+                  className="w-full h-auto"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1280px"
+                />
+              </div>
+              {/* Remaining images — 2-col grid, natural ratio */}
+              {project.case.imagens.length > 1 && (
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {project.case.imagens.slice(1).map((src, i) => (
+                    <div key={i} className="w-full overflow-hidden rounded-2xl" style={{ background: 'var(--card-bg)' }}>
+                      <Image
+                        src={src}
+                        alt={`${project.titulo} — detalhe ${i + 2}`}
+                        width={700}
+                        height={500}
+                        className="w-full h-auto"
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
           )}
 

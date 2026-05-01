@@ -27,6 +27,7 @@ export interface Project {
   tecnologias: string[];
   categoria?: string;
   imagemUrl?: string;
+  imagemObjectPosition?: string;
   linkProjeto?: string;
   destaque?: boolean;
   cor?: string;

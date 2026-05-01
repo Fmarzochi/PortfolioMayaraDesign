@@ -3,9 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { TextReveal } from '@/components/ui/TextReveal';
+import { useMagnetic } from '@/hooks/useMagnetic';
 
 export function HeroSection() {
   const { t } = useLanguage();
+  const ctaMagnetic = useMagnetic(12);
 
   return (
     <section
@@ -56,12 +59,13 @@ export function HeroSection() {
       >
         {/* Texto */}
         <div className="flex w-full flex-col gap-5 md:max-w-[56%] lg:max-w-[54%]">
-          <h1
+          <TextReveal
+            as="h1"
             className="fluid-hero font-display font-semibold tracking-tight"
             style={{ color: 'var(--text-primary)' }}
           >
-            {t.hero.title1}{t.hero.titleAccent}{t.hero.title2}
-          </h1>
+            {`${t.hero.title1}${t.hero.titleAccent}${t.hero.title2}`}
+          </TextReveal>
 
           <p
             className="font-body text-base leading-relaxed sm:text-lg"
@@ -72,22 +76,25 @@ export function HeroSection() {
 
           <div>
             <Link
+              ref={ctaMagnetic.ref as React.RefObject<HTMLAnchorElement>}
               href="/projetos"
-              className="inline-flex items-center gap-2.5 rounded-full px-5 py-3 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80 sm:px-6"
-              style={{ border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+              className="inline-flex items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 font-sans text-sm font-medium transition-all duration-200 hover:opacity-80"
+              style={{ background: 'var(--btn-bg)', border: '1px solid var(--border)', color: 'var(--text-primary)', ...ctaMagnetic.style }}
+              onMouseMove={ctaMagnetic.onMouseMove as React.MouseEventHandler<HTMLAnchorElement>}
+              onMouseLeave={ctaMagnetic.onMouseLeave}
             >
               {t.hero.cta}
               <span
-                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
-                style={{ background: 'var(--accent)' }}
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                style={{ background: 'var(--btn-icon-bg)' }}
               >
                 <Image
                   src="/assets/icons/arrow-up-right.svg"
                   alt=""
-                  width={13}
-                  height={13}
+                  width={17}
+                  height={17}
                   aria-hidden="true"
-                  className="brightness-[10]"
+                  className="brightness-0 dark:brightness-[10]"
                 />
               </span>
             </Link>
@@ -102,7 +109,10 @@ export function HeroSection() {
               aria-hidden="true"
               className="opacity-50 shrink-0"
             />
-            <span className="font-sans text-sm" style={{ color: 'var(--text-muted)' }}>
+            <span
+              className="font-sans text-sm"
+              style={{ color: 'var(--text-muted)' }}
+            >
               {t.hero.timeLabel}
             </span>
           </div>
